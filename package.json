@@ -1,0 +1,25 @@
+{
+  "name": "projeto-school-ada-tech",
+  "version": "1.0.0",
+  "description": "avaliacao-modulo-2",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "ts-node src/index.ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ivisondsb/project-two-schoolSystem-JS-POO.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ivisondsb/project-two-schoolSystem-JS-POO/issues"
+  },
+  "homepage": "https://github.com/ivisondsb/project-two-schoolSystem-JS-POO#readme",
+  "dependencies": {
+    "@types/prompt-sync": "^4.2.3",
+    "prompt-sync": "^4.2.0"
+  }
+}
