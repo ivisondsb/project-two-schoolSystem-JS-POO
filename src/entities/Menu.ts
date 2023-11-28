@@ -1,4 +1,4 @@
-import promptSync from 'prompt-sync';
+import * as promptSync from 'prompt-sync';
 
 const prompt = promptSync();
 

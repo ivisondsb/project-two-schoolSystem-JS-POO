@@ -18,6 +18,6 @@ export class Student {
     console.log(`Nome: ${this.course.name}`);
     console.log(`Turno: ${this.course.shift}`);
     console.log(`Disciplinas:`);
-    this.course.showDisciplines();
+    this.course.listDisciplines();
   }
 }

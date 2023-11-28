@@ -4,8 +4,8 @@ import { StudentProps } from '../interfaces/Students';
 import { StudentsMethodsProps } from '../interfaces/Students';
 
 export class Course {
-    private name: string;
-    private shift: string;
+    public name: string;
+    public shift: string;
     private disciplines: Discipline[];
     private students: Student[];
     private static courses: Course[] = [];

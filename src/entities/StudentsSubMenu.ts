@@ -1,4 +1,4 @@
-import promptSync from 'prompt-sync'
+import * as promptSync from 'prompt-sync'
 
 import { Menu } from './Menu';
 import { Student } from './Student';
@@ -52,7 +52,7 @@ export class StudentsSubMenu {
     const selectedCourse = CoursesSubMenu.courses[courseIndex];
 
     const newStudent = new Student(name, age, selectedCourse);
-    CoursesSubMenu.students.push(newStudent);
+    StudentsSubMenu.students.push(newStudent);
 
     console.log('Aluno cadastrado com sucesso!');
   }
