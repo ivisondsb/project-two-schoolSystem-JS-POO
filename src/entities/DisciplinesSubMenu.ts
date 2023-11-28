@@ -7,7 +7,7 @@ import { CoursesSubMenu } from './CoursesSubMenu';
 const prompt = promptSync()
 
 export class DisciplinesSubMenu {
-  static disciplinas: Discipline[] = [];
+  static disciplines: Discipline[] = [];
 
   static start(): void {
     while (true) {

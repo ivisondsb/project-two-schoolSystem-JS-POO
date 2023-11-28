@@ -8,9 +8,9 @@ import { CoursesSubMenu } from './CoursesSubMenu';
 const prompt = promptSync()
 
 export class StudentsSubMenu {
-  static students: Student[] = [];
+  protected static students: Student[] = [];
 
-  static start(): void {
+  public static start(): void {
     while (true) {
       console.log('\n=== Gerenciar Alunos ===');
       console.log('1. Cadastrar Aluno');
@@ -39,7 +39,7 @@ export class StudentsSubMenu {
     }
   }
 
-  static registerStudent(): void {
+  public static registerStudent(): void {
     const name: string = prompt('Nome do aluno: ') || '';
     const age = Number(prompt('Idade do aluno: '));
 
@@ -51,7 +51,13 @@ export class StudentsSubMenu {
     const courseIndex = Number(prompt('Escolha o número do curso: ')) - 1;
     const selectedCourse = CoursesSubMenu.courses[courseIndex];
 
-    const newStudent = new Student(name, age, selectedCourse);
+    if (courseIndex > CoursesSubMenu.courses.length) {
+      throw new Error(`Este curso não existe`)
+    }
+
+    let newStudentId = StudentsSubMenu.students.length + 1
+
+    const newStudent = new Student(name, age, selectedCourse, newStudentId);
     StudentsSubMenu.students.push(newStudent);
 
     console.log('Aluno cadastrado com sucesso!');
