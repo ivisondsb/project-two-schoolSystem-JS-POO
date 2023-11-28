@@ -1,17 +1,19 @@
 import { Course } from './Course';
 
 export class Student {
-  name: string;
-  age: number;
-  course: Course;
+  private name: string;
+  private age: number;
+  private course: Course;
+  private id: number
 
-  constructor(name: string, age: number, course: Course) {
+  constructor(name: string, age: number, course: Course, id: number) {
     this.name = name;
     this.age = age;
     this.course = course;
+    this.id = id
   }
 
-  showData(): void {
+  public showData(): void {
     console.log(`Nome: ${this.name}`);
     console.log(`Idade: ${this.age}`);
     console.log(`Curso:`);
@@ -20,4 +22,21 @@ export class Student {
     console.log(`Disciplinas:`);
     this.course.listDisciplines();
   }
+
+  public getName(): string {
+    return this.name;
+  }
+
+  public getAge(): number {
+    return this.age;
+  }
+
+  public getCourse(): Course {
+    return this.course;
+  }
+
+  public getId(): number {
+    return this.id;
+  }
+  
 }

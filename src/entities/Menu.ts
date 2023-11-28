@@ -1,4 +1,7 @@
 import * as promptSync from 'prompt-sync';
+import { StudentsSubMenu } from './StudentsSubMenu';
+import { DisciplinesSubMenu } from './DisciplinesSubMenu';
+import { CoursesSubMenu } from './CoursesSubMenu';
 
 const prompt = promptSync();
 
@@ -9,13 +12,13 @@ export class Menu {
 
             switch(option) {
                 case '1':
-                    console.log('Option 1');
+                    StudentsSubMenu.start()
                     break;
                 case '2':
-                    console.log('Option 2');
+                    DisciplinesSubMenu.start();
                     break;
                 case '3':
-                    console.log('Option 3');
+                    CoursesSubMenu.start();
                     break;
                 case '4':
                     return;

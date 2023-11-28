@@ -4,9 +4,9 @@ import { Course } from './Course';
 const prompt = promptSync()
 
 export class CoursesSubMenu {
-  static courses: Course[] = [];
+  public static courses: Course[] = [];
 
-  static start(): void {
+  public static start(): void {
     while (true) {
       console.log('\n=== Gerenciar Cursos ===');
       console.log('1. Cadastrar Curso');
@@ -29,7 +29,7 @@ export class CoursesSubMenu {
     }
   }
 
-  static consultCourse(): void {
+  public static consultCourse(): void {
     console.log('\n=== Consultar Cursos ===');
     
     if (CoursesSubMenu.courses.length === 0) {
@@ -40,13 +40,13 @@ export class CoursesSubMenu {
       });
 
       const option = prompt('Escolha o número do curso para mais detalhes (ou pressione Enter para voltar): ');
-
+      const numberOption = Number(option)
       if (option && option.trim() !== '') {
-        const selectedCourse = CoursesSubMenu.courses[Number(option) - 1];
-
+        const selectedCourse = CoursesSubMenu.courses[numberOption - 1];
+        if (numberOption > CoursesSubMenu.courses.length)
         if (selectedCourse) {
           console.log(`Detalhes do Curso ${selectedCourse.name}:`);
-          console.log(`  Turno: ${selectedCourse.shift}`);
+          console.log(`Turno: ${selectedCourse.shift}`);
           console.log('Disciplinas:');
           selectedCourse.listDisciplines();
         } else {
