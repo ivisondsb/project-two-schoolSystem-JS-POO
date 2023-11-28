@@ -48,7 +48,7 @@ export class CoursesSubMenu {
           console.log(`Detalhes do Curso ${selectedCourse.name}:`);
           console.log(`  Turno: ${selectedCourse.shift}`);
           console.log('Disciplinas:');
-          selectedCourse.showDisciplines();
+          selectedCourse.listDisciplines();
         } else {
           console.log('Opção inválida. Curso não encontrado.');
         }
