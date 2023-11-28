@@ -1,5 +1,5 @@
-import { Student } from './Student';
-import { Discipline } from './Discipline';
+import { Student } from '../entities/Student';
+import { Discipline } from '../entities/Discipline';
 
 export interface StudentProps {
      name: string;
