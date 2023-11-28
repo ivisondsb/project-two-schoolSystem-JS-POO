@@ -10,15 +10,15 @@ export class Discipline {
     this._grade = 0;
   }
 
-  get name(): string {
+  getName(): string {
     return this._disciplineName;
   }
 
-  get workload(): number {
+  getWorkload(): number {
     return this._workload;
   }
 
-  get grade(): number {
+  getGrade(): number {
     return this._grade;
   }
 }
