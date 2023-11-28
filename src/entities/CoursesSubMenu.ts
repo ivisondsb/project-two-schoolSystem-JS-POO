@@ -21,6 +21,15 @@ export class CoursesSubMenu {
         case '1':
           console.log('bla')
           break;
+        case '2':
+          this.consultCourse()
+          break;
+        case '3':
+          console.log('bla')
+          break;
+        case '4':
+          this.updateCourse()
+          break;
         case '5':
           return;
         default:
@@ -51,6 +60,38 @@ export class CoursesSubMenu {
           selectedCourse.listDisciplines();
         } else {
           console.log('Opção inválida. Curso não encontrado.');
+        }
+      }
+    }
+  }
+  public static updateCourse(): void {
+    console.log('\n=== Atualizar Curso ===');
+    
+    if (CoursesSubMenu.courses.length === 0) {
+      console.log('Nenhum curso cadastrado.');
+    } else {
+      CoursesSubMenu.courses.forEach((course, index) => {
+        console.log(`${index + 1}. Nome: ${course.name}, Turno: ${course.shift}`);
+      });
+
+      const option = prompt('Escolha o número do curso para atualizar (ou pressione Enter para voltar): ');
+
+      if (option && option.trim() !== '') {
+        const numberOption = Number(option);
+        
+        if (numberOption <= CoursesSubMenu.courses.length) {
+          const selectedCourse = CoursesSubMenu.courses[numberOption - 1];
+          
+          console.log(`Atualizando curso ${selectedCourse.name}:`);
+          
+          const newName = prompt(`Novo nome (${selectedCourse.name}): `) || selectedCourse.name;
+          const newShift = prompt(`Novo turno (${selectedCourse.shift}): `) || selectedCourse.shift;
+
+          selectedCourse.name = newName;
+          selectedCourse.shift = newShift;
+          console.log('O curso foi atualizado.');
+        } else {
+          console.log('Curso não encontrado.');
         }
       }
     }
