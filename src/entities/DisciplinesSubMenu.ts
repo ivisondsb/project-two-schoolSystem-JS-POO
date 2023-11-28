@@ -1,4 +1,4 @@
-import * as promptSync from 'prompt-sync'
+import promptSync from 'prompt-sync'
 
 import { Discipline } from './Discipline';
 import { Course } from './Course';

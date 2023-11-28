@@ -1,4 +1,4 @@
-import * as promptSync from 'prompt-sync'
+import promptSync from 'prompt-sync'
 
 import { Menu } from './Menu';
 import { Student } from './Student';
