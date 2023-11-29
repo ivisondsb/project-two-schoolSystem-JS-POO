@@ -1,0 +1,121 @@
+Título do projeto - schoolSystem
+
+	O código foi desenvolvido em inglês que consiste em um sistema de gerenciamento de alunos, cursos e disciplinas implementado em TypeScript. Utilizando classes e interfaces, o sistema oferece funcionalidades para cadastrar, consultar, remover, atualizar e listar alunos, bem como adicionar e listar disciplinas em cursos específicos. Com atributos como nome, turno, disciplinas e curso presentes nas classes, é possível realizar operações detalhadas sobre as informações, permitindo um controle abrangente e organizado no gerenciamento de alunos, cursos e disciplinas.
+
+	Foram criadas as classes Student, Course, e Discipline que representam entidades centrais, com métodos para manipular informações sobre alunos, cursos e disciplinas.
+	Das classes foram criadas suas subClasses que representam o menu StudentSubMenu, DisciplineSubMenu, CourseSubMenu.
+Interfaces também foram criadas com uma pasta separada com o nome "interfaces", e seu arquivo de interface Students com as interfaces StudentsMethodsProps e StudentProps.
+
+	Definindo a estrutura e as operações possíveis para os alunos, disciplinas e cursos garantindo consistência entre diferentes partes do sistema. A interação com o usuário é feita por meio de um menu interativo que oferece opções para realizar diversas ações, proporcionando um controle detalhado sobre o gerenciamento de estudantes e cursos.
+
+	Desenvolvido com Node.js - v18.13.0, v18.16.0, v18.18.2, v18.12.0 e TypeScript. 
+
+
+🚀 Começando
+
+O código está presente no git de ivison: https://github.com/ivisondsb/project-two-schoolSystem-JS-POO.
+
+Precisa ser feito a clonagem do repositório: Abra o terminal e navegue até o diretório desejado para o código. git clone 
+'https://github.com/seu-usuario/nome-do-repositorio.git'
+
+
+
+📋 Pré-requisitos
+
+
+De que coisas você precisa para instalar o software e como instalá-lo?
+
+Node.js / typescript - IDE que rode ambos. Utilizada no projeto Visual Studio Code.
+
+
+
+🔧 Instalação
+
+
+Instale as dependências: No diretório do projeto, execute o seguinte comando para instalar as dependências listadas no arquivo package.json.
+'cd nome-do-repositorio'
+'npm install'
+
+Executar o software: Após a instalação das dependências, você pode iniciar o software. 
+'npm start'
+
+
+📦 Menu
+
+    
+
+
+
+⚙️ Classes
+
+
+As classes são divididas em Student, Course, e Discipline. 
+
+Student-
+
+Course-
+
+Discipline-
+
+
+🔩 SubClasses
+
+
+StudentSubMenu-
+
+DisciplineSubMenu- 
+
+CourseSubMenu-
+
+
+⌨️ Interface
+
+
+
+🛠️ Construído com
+
+Node.js - v18.13.0, v18.16.0, v18.18.2, v18.12.0.
+TypeScript 
+IDE - Utilizada no projeto Visual Studio Code.
+
+
+🖇️ Colaborando
+
+
+Por favor, leia as Documentações para obter detalhes sobre o desenvolvimento do nosso código.
+
+
+📌 Versão
+
+
+Nós usamos SemVer para controle de versão. Para as versões disponíveis, observe as tags neste repositório.
+
+
+✒️ Autores
+
+
+   Time de Juniores kkkk.
+
+   Suamy Vasconcelos- Desenvolvedor full stack Node.JS/TypeScript - Java - Angularjunior;
+
+   Luis Otávio - Desenvolvedor Back-End junior Node.JS-Functional/TypeScript;
+
+   Edson Suraty - Desenvolvedor Back-End junior Node.JS/TypeScript;
+
+   Ivison Silva- Desenvolvedor Back-End Junior Node.JS/TypeScript;
+
+   Gabriela - Desenvolvedora full stack junior Node.JS/TypeScript - Java - Junior; 
+
+
+📄 Licença
+
+
+Este projeto está sob a licença (sua licença) - veja o arquivo LICENSE.md para detalhes.
+
+
+🎁 Expressões de gratidão
+
+
+Conte a outras pessoas sobre este projeto 📢;
+Convide alguém da equipe para uma cerveja 🍺;
+Um agradecimento publicamente em especial ao Professor do módulo Esdras Aguilar e a toda nossa sala 1091!;
