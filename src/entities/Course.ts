@@ -28,8 +28,11 @@ export class Course implements CoursesMethodsProps {
             Course.courses.push(course);
             console.log('\nO curso foi cadastrado.');
         }
+
+        this.addDisciplineToCourse(course);
+
     
-        const addDiscipline = prompt('Deseja adicionar uma disciplina ao curso? (S para Sim, qualquer tecla para Não): ');
+        const addDiscipline = prompt('Deseja adicionar uma nova disciplina ao curso? (S para Sim, qualquer tecla para Não): ');
     
         if (addDiscipline.toUpperCase() === 'S') {
             this.addDisciplineToCourse(course);
