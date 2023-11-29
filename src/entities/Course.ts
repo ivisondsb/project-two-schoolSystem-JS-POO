@@ -38,8 +38,7 @@ export class Course implements CoursesMethodsProps{
             console.log(`${index + 1}. Nome: ${course.name}, Turno: ${course.shift}`);
             });
         }
-    }
-
+  }
     public removeCourse(name: string): void {
         const index = this.courses.findIndex((course) => course.name === name);
     

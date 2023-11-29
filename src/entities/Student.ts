@@ -1,5 +1,8 @@
 import { Course } from './Course';
 import { Discipline } from './Discipline';
+import * as promptSync from 'prompt-sync'
+
+const prompt = promptSync()
 
 export class Student {
   private name: string;
@@ -23,7 +26,7 @@ export class Student {
     console.log(`Nome: ${this.course.name}`);
     console.log(`Turno: ${this.course.shift}`);
     console.log(`Disciplinas:`);
-    Discipline.listDisciplines();
+    //Discipline.listDisciplines();
   }
 
   public getName(): string {
@@ -42,7 +45,7 @@ export class Student {
     return this.id;
   }
   
-  public static listStudents(): void {
+  /*public static listStudents(): void {
     if (this.students.length === 0) {
         console.log(`No students found in the course ${this.name}.`);
     } else {
@@ -51,26 +54,45 @@ export class Student {
             student.showInfo();
         });
     }
-}
+}*/
 
-  public static removeStudent(studentId: string): void {
+  /*public static removeStudent(studentId: string): void {
     const studentIndex = this.students.findIndex(student => student.getId() === studentId);
     if (studentIndex === -1) {
         throw new Error(`Student with ID ${studentId} not found in the course.`);
     }
     Student.students.splice(studentIndex, 1);
-}
+}*/
 
   public static registerStudent(): void {
-    const name: string = prompt('Nome do aluno: ') || '';
-    const age = Number(prompt('Idade do aluno: '));
+    
+    try {
+      const name: string = (prompt('Nome do aluno: ') || '');
+
+    if (!this.isOnlyLetters(name)) {
+      throw new Error('Nome inválido. Por favor, insira apenas letras.');
+  }
+
+    const ageInput: string = (prompt('Idade do aluno: ')) || '';
+
+    if (isNaN(Number(ageInput))) {
+      throw new Error('Idade inválida. Por favor, insira apenas números.');
+  }
+  
+    const age = Number(ageInput)
 
     console.log('Cursos Disponíveis:');
     for (let i = 0; i < this.studentInstance.courses.length; i++) {
       console.log(`${i + 1}. ${this.studentInstance.courses[i].name}`);
     }
 
-    const courseIndex = Number(prompt('Escolha o número do curso: ')) - 1;
+    const courseInput : string = (prompt('Escolha o número do curso: '));
+
+    if (isNaN(Number(courseInput))) {
+      throw new Error('Curso inválido. Por favor, insira apenas números.');
+  }
+
+    const courseIndex = Number(courseInput) - 1;
     const selectedCourse = this.studentInstance.courses[courseIndex];
 
     if (courseIndex >= this.studentInstance.courses.length) {
@@ -83,5 +105,14 @@ export class Student {
     Student.students.push(newStudent);
 
     console.log('Aluno cadastrado com sucesso!');
+
+  } catch(error: any) {
+    console.log(error.message)
   }
+
 }
+private static isOnlyLetters(input: string): boolean {
+  return /^[a-zA-Z\s]+$/.test(input);
+}
+}
+

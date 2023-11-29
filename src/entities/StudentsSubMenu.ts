@@ -23,9 +23,10 @@ export class StudentsSubMenu {
 
       switch (option) {
         case '1':
+          Student.registerStudent()
           break;
         case '2':
-          Student.listStudents();
+          //Student.listStudents();
           break;
         case '3':
           // Student.removeStudent();

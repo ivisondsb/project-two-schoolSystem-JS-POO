@@ -25,10 +25,10 @@ export class DisciplinesSubMenu {
           console.log('add discipline');
           break;
         case '2':
-          Discipline.listDisciplines();
+          //Discipline.listDisciplines();
           break;
         case '3':
-          Discipline.removeDiscipline();
+          //Discipline.removeDiscipline();
           break;
         case '4':
           console.log('update discipline');

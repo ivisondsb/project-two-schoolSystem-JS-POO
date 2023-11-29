@@ -11,7 +11,7 @@ export class Discipline {
       this.disciplines = [];
   }
 
-  public static addDiscipline(discipline: Discipline): void {
+  /*public static addDiscipline(discipline: Discipline): void {
     const existingDiscipline = this.disciplines.find(d => d.getName() === discipline.getName());
     if (existingDiscipline) {
         throw new Error(`Discipline ${discipline.getName()} already exists in the course.`);
@@ -35,6 +35,6 @@ export class Discipline {
             console.log(discipline.getName());
         });
     }
-  }
+  }*/
 }
   
