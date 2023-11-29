@@ -1,14 +1,12 @@
-import * as promptSync from 'prompt-sync'
+import * as promptSync from 'prompt-sync';
 
-import { Menu } from './Menu';
 import { Student } from './Student';
 import { Course } from './Course';
-import { CoursesSubMenu } from './CoursesSubMenu';
 
-const prompt = promptSync()
+const prompt = promptSync();
 
 export class StudentsSubMenu {
-  protected static students: Student[] = [];
+  private static studentInstance: Student = new Student('', 0, new Course('', ''), 0);
 
   public static start(): void {
     while (true) {
@@ -23,15 +21,16 @@ export class StudentsSubMenu {
 
       switch (option) {
         case '1':
+          StudentsSubMenu.studentInstance.registerStudent(prompt('Digite o nome do aluno: '), Number(prompt('Digite a idade do aluno: ')));
           break;
         case '2':
-          Student.listStudents();
+          StudentsSubMenu.studentInstance.checkStudent();
           break;
         case '3':
-          // Student.removeStudent();
+          StudentsSubMenu.studentInstance.removeStudent();
           break;
         case '4':
-          console.log('update aluno');
+          StudentsSubMenu.studentInstance.updateStudent();
           break;
         case '5':
           return;

@@ -8,7 +8,7 @@ const prompt = promptSync();
 export class Course implements CoursesMethodsProps {
     public name: CourseProps['name'];
     public shift: CourseProps['shift'];
-    public disciplines: Discipline[] = [];
+    public disciplines: CourseProps['disciplines'] = [];
     public static courses: Course[] = [];
 
     constructor(name: string, shift: string) {

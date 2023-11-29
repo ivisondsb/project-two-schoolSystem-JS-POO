@@ -1,24 +1,25 @@
-// import { disciplineProps } from "../interfaces/Discipline"
+import { disciplineProps } from "../interfaces/Discipline";
+import { disciplineMethodsProps } from "../interfaces/Discipline";
 
-export class Discipline /*implements disciplineProps*/ {
-    private _disciplineName: string;
-    private _workload: number;
-    private _grade: number;
+export class Discipline implements disciplineMethodsProps{
+    public disciplineName: disciplineProps['disciplineName'];
+    private workload: disciplineProps['workload'];
+    private grade: disciplineProps['grade'];
 
     constructor(disciplineName: string, workload: number, grade: number) {
-      this._disciplineName = disciplineName;
-      this._workload = workload;
-      this._grade = grade;
+      this.disciplineName = disciplineName;
+      this.workload = workload;
+      this.grade = grade;
   }
   getName(){
-    return this._disciplineName;
+    return this.disciplineName;
   }
 
   getWorkload(){
-    return this._workload;
+    return this.workload;
   }
 
   getGrade(){
-    return this._grade;
+    return this.grade;
   }
 }
