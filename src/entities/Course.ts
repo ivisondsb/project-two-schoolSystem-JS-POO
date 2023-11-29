@@ -1,85 +1,163 @@
 import * as promptSync from 'prompt-sync';
+import { Discipline } from './Discipline';
 import { CourseProps } from '../interfaces/Courses';
 import { CoursesMethodsProps } from '../interfaces/Courses';
 
 const prompt = promptSync();
-export class Course implements CoursesMethodsProps{
+
+export class Course implements CoursesMethodsProps {
     public name: CourseProps['name'];
     public shift: CourseProps['shift'];
-    public disciplines: CourseProps['disciplines'];
-    public courses: Course[] = [];
+    public disciplines: Discipline[] = [];
+    public static courses: Course[] = [];
 
     constructor(name: string, shift: string) {
         this.shift = shift;
         this.name = name;
         this.disciplines = [];
+        Course.courses = [];
     }
 
     public addCourse(name: string, shift: string): void {
         console.log('\n=== Cadastrar Curso ===');
-
+        
         const course = new Course(name, shift);
-        if (this.courses.find((course) => course.name === name)) {
+        if (Course.courses.find((course) => course.name === name)) {
             console.log('O curso já está cadastrado.');
             return;
         }
-        this.courses.push(course);
+        Course.courses.push(course);
 
         console.log('\nO curso foi cadastrado.');
     }
 
     public listCourses(): void {
         console.log('\n=== Consultar Cursos ===');
-        
-        if (this.courses.length === 0) {
+
+        if (Course.courses.length === 0) {
             console.log('Nenhum curso cadastrado.');
         } else {
-            this.courses.forEach((course, index) => {
-            console.log(`${index + 1}. Nome: ${course.name}, Turno: ${course.shift}`);
+            Course.courses.forEach((course, index) => {
+                console.log(`${index + 1}. Nome: ${course.name}, Turno: ${course.shift}`);
             });
         }
     }
 
     public removeCourse(name: string): void {
-        const index = this.courses.findIndex((course) => course.name === name);
-    
+        const index = Course.courses.findIndex((course) => course.name === name);
+
         if (index === -1) {
-          console.log('Curso não encontrado.');
+            console.log('Curso não encontrado.');
         } else {
-          this.courses.splice(index, 1);
-          console.log('O curso foi removido.');
+            Course.courses.splice(index, 1);
+            console.log('O curso foi removido.');
         }
     }
 
     public updateCourse(): void {
         console.log('\n=== Atualizar Curso ===');
-        
-        if (this.courses.length === 0) {
-          console.log('Nenhum curso cadastrado.');
-            this.courses.forEach((course, index) => {
-            console.log(`${index + 1}. Nome: ${course.name}, Turno: ${course.shift}`);
+
+        if (Course.courses.length === 0) {
+            console.log('Nenhum curso cadastrado.');
+        } else {
+            Course.courses.forEach((course, index) => {
+                console.log(`${index + 1}. Nome: ${course.name}, Turno: ${course.shift}`);
             });
-    
-          const option = prompt('Escolha o número do curso para atualizar (ou pressione Enter para voltar): ');
-    
-          if (option && option.trim() !== '') {
-            const numberOption = Number(option);
-            
-            if (numberOption <= this.courses.length) {
-              const selectedCourse = this.courses[numberOption - 1];
-              
-              console.log(`Atualizando curso ${selectedCourse.name}:`);
-              
-              const newName = prompt(`Novo nome (${selectedCourse.name}): `) || selectedCourse.name;
-              const newShift = prompt(`Novo turno (${selectedCourse.shift}): `) || selectedCourse.shift;
-    
-              selectedCourse.name = newName;
-              selectedCourse.shift = newShift;
-              console.log('O curso foi atualizado.');
-            } else {
-              console.log('Curso não encontrado.');
+
+            const option = prompt('Escolha o número do curso para atualizar (ou pressione Enter para voltar): ');
+
+            if (option && option.trim() !== '') {
+                const numberOption = Number(option);
+
+                if (numberOption <= Course.courses.length) {
+                    const selectedCourse = Course.courses[numberOption - 1];
+
+                    console.log(`Atualizando curso ${selectedCourse.name}:`);
+
+                    const newName = prompt(`Novo nome (${selectedCourse.name}): `) || selectedCourse.name;
+                    const newShift = prompt(`Novo turno (${selectedCourse.shift}): `) || selectedCourse.shift;
+
+                    selectedCourse.name = newName;
+                    selectedCourse.shift = newShift;
+                    console.log('O curso foi atualizado.');
+
+                    const addDiscipline = prompt('Deseja adicionar uma disciplina ao curso? (S para Sim, qualquer tecla para Não): ');
+                    if (addDiscipline.toUpperCase() === 'S') {
+                        this.addDisciplineToCourse(selectedCourse);
+                    }
+                } else {
+                    console.log('Curso não encontrado.');
+                }
             }
-          }
+        }
+    }
+
+    public addDisciplineToCourse(course: Course): void {
+        console.log(`\n=== Adicionar Disciplina a Curso ${course.name} ===`);
+        const disciplineName = prompt('Nome da disciplina: ');
+        const workload = Number(prompt('Carga horária da disciplina: '));
+        const grade = Number(prompt('Nota da disciplina: '));
+
+        const discipline = new Discipline(disciplineName, workload, grade);
+        course.disciplines.push(discipline);
+
+        console.log(`Disciplina ${disciplineName} adicionada ao curso ${course.name}.`);
+    }
+
+    public addDisciplineToCourseManually(): void {
+        console.log('\n=== Cadastrar Disciplina ===');
+    
+        // Exibir a lista de cursos disponíveis
+        this.listCourses();
+    
+        if (Course.courses.length === 0) {
+            console.log('Nenhum curso disponível.');
+            return;
+        }
+    
+        // Solicitar ao usuário que escolha um curso
+        const courseOption = prompt('Escolha o número do curso para adicionar disciplina (ou pressione Enter para voltar): ');
+    
+        if (!courseOption || courseOption.trim() === '') {
+            return; // Usuário optou por voltar
+        }
+    
+        const courseNumber = Number(courseOption);
+    
+        if (courseNumber > 0 && courseNumber <= Course.courses.length) {
+            const selectedCourse = Course.courses[courseNumber - 1];
+    
+            // Iniciar o loop de adição de disciplinas
+            while (true) {
+                // Solicitar informações da disciplina
+                const disciplineName = prompt('Nome da disciplina: ');
+                const workload = Number(prompt('Carga horária da disciplina: '));
+                const grade = Number(prompt('Nota da disciplina: '));
+    
+                // Criar a disciplina e adicioná-la ao curso
+                const discipline = new Discipline(disciplineName, workload, grade);
+                selectedCourse.disciplines.push(discipline);
+    
+                console.log(`Disciplina ${disciplineName} adicionada ao curso ${selectedCourse.name}.`);
+    
+                // Perguntar se deseja adicionar outra disciplina
+                const addAnotherDiscipline = prompt('Deseja adicionar outra disciplina? (S para Sim, qualquer tecla para Não): ');
+    
+                if (addAnotherDiscipline.toUpperCase() !== 'S') {
+                    // Se não quiser adicionar outra disciplina, sair do loop
+                    break;
+                }
+            }
+    
+            // Perguntar se deseja adicionar em outro curso
+            const addInAnotherCourse = prompt('Deseja adicionar em outro curso? (S para Sim, qualquer tecla para Não): ');
+    
+            if (addInAnotherCourse.toUpperCase() === 'S') {
+                // Se quiser adicionar em outro curso, chamar novamente o método
+                this.addDisciplineToCourseManually();
+            }
+        } else {
+            console.log('Opção inválida de curso.');
         }
     }
 }
