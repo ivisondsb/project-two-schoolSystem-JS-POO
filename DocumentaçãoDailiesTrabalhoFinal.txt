@@ -1,0 +1,86 @@
+Detalhes das reuniões.
+
+
+1º Reunião - 23/11/2023(Quinta-feira) Discord 22:10hrs - 00:00
+
+
+
+   Introdução de como será a aplicação.
+
+   Decidimos que o projeto será todo em inglês, nome será Sistema de cadastramento de alunos, em inglês schoolSystem.
+
+   Para separar tarefas de cada dev., usaremos o Trello decidimos usar o trello.
+   
+   Como são 5 pessoas, pensamos em um meio de cada um participar melhor do projeto, portanto, aproveitando o trello, colocamos todos as etapas do projeto e cada um poderia pegar para fazer, da criação de cada classe até os metodos.
+
+   as tarefas foram dividas em fases de progresso e concluídas, que ao pegar uma tarefa, colocar em progresso e assim que terminadas, colocar em concluídas. Lembrar de avisar também no whatsapp.
+
+   Inicialmente o projeto ficará no git de ivison, https://github.com/ivisondsb/project-two-schoolSystem-JS-POO, onde começará pelo menu e disponibilizará para todos começarem a pegar uma tarefa e codar.
+
+   Como existem vários atributos a serem colocados nas classes, então decidimos que na medida que fomos fazendo as tasks, adicionaremos os atributos que acharemos necessários e na próxima reunião definiriamos os principais
+
+
+
+2º Reunião - 24/11/2023(Sexta-feira) Whatsapp All day
+
+
+
+   Devido a obrigações pessoais de trabalho, ivison não conseguiria fazer o menu, nesse caso, gabriela se prontificou a realizar o menu e upar para o git de ivison.
+
+   Cada membro do grupo pegou as tasks para serem feitas durante o final de semana para serem apresentadas na próxima reunião 
+
+   Suamy - Criar Classe Curso, Cadastrar Curso, Remover Disciplina, Consultar Disciplina e Remover Curso;
+
+   Luis - Criar Classe Aluno, Cadastrar Aluno, Consultar Curso;
+
+   Edson - Atualizar Curso, Atualizar Disciplina, Cadastrar Disciplina;
+
+   Ivison - Remover Aluno, Atualizar Aluno, Consultar Aluno;
+
+   Gabriela - Organizou no git, criou o Menu e vinculou os arquivos; 
+
+
+
+3º Reunião - 27/11/2023(Segunda-Feira) Discord 22:10 - 00:00
+
+
+
+   Criamos a interface usando os metodos descritos no projeto e definimos os atributos.
+
+   Enviamos todos os arquivos para o git de ivison para alinhar o código.
+
+   Reatribuimos as tarefas faltantes, juntamos arquivos e adequamos os arquivos para ficar igual.
+
+   Mexemos no código para melhorar a leitura. Verificamos o tsconfig e deixamos igual ao da última aula.
+
+
+4º Reunião - 28/11/2023 Discord(Terça-Feira) 19:00 - 00:00
+
+
+   Checar o que está faltando no código para live. Ivison chega as 21hrs do trabalho.
+
+   Dividimos em tarefas para rodar 1.- Pegar disciplinias da classe course e colocar na classe disciplinaSub (Edson)
+				   2.- Tirar da classe Course os métodos de add aluno, remover aluno, listar aluno e colocar na classe studentSub ( Luis)
+				   3.- documentação técnica (Suamy);
+				   4.- classe (Disciplinas) atributos fixos (gabi);
+				   5.- Remover Aluno, Atualizar Aluno, Consultar Aluno(Ivison);
+
+
+5º Reunião - 29/11/2023 Discod (Quarta-Feira) 10:00 - 
+
+
+   A reunião iria começar às 10hrs, mas como estavamos livres de manhã, começamos às 9:30h.
+
+Dividimos em tarefas para rodar	1.- terminar da documentação técnica e fluxograma;
+				2.- gabi verificando problemas do código do student;
+				3.- ivison method deletar, atualizar e listar students;
+				4.- Edson fazer o restante de disciplina; 
+				5.- ivison console.clear e /n;
+
+   Chegamos a conclusão de colocar os metodos da disciplina dentro da classe curso, porque ficou mais coeso, visto que a disciplina é referente a um curso.
+
+
+
+
+ 
+

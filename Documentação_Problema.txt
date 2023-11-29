@@ -1,0 +1,89 @@
+Problemática:
+    * Sistema para cadastramento de alunos, cursos e disciplinas:
+            
+ 	schoolSystem
+
+        1. Quais os dados de entrada para resolver o problema:
+            - Caracteristícas do sistema de gerenciamento
+                ALUNOS
+    		DISCIPLINAS
+    		CURSOS
+
+            - Interesse da utilização do sistema
+               
+		1-Gerenciar ALUNOS
+    		2-Gerenciar DISCIPLINAS
+    		3-Gerenciar CURSOS
+
+        
+        2. O que é preciso fazer com esses dados:
+            - Interesses
+                > ALUNOS + DISCIPLINAS + CURSOS
+            - Armazenar dados
+                > Caracteristícas dos Alunos, disciplina e cursos
+                    ALUNOS
+                        Nome
+                        Curso
+                        Idade
+                        Descrição do perfil
+                    DISCIPLINAS 
+                        Nome
+                        Carga horária
+                    	Nota
+		    CURSOS
+                        Nome
+                        Carga horária
+                    	Nota
+			Disciplina
+                
+
+		> Oferecimento
+                  
+
+  		1-Gerenciar ALUNOS
+		1.1-Cadastrar ALUNO
+    		1.2-Consultar ALUNO
+    		1.3-Remover ALUNO
+    		1.4-Atualizar ALUNO
+
+		2-Gerenciar DISCIPLINAS
+		2.1-Cadastrar DISCIPLINA
+   		2.2-Consultar DISCIPLINA
+    		2.3-Remover DISCIPLINA
+    		2.4-Atualizar DISCIPLINA
+
+
+		3-Gerenciar CURSOS
+		3.1-Cadastrar CURSO
+    		3.2-Consultar CURSO
+    		3.3-Remover CURSO
+    		3.4-Atualizar CURSO
+
+		
+
+            - Resultados:
+                > Salvar e disponibilizar histórico
+                
+
+        3. Quais as restrições e/ou regra de negócio do problema:
+            - Caracteristícas obrigatório
+            - O sistema inicialmente deve ser desenvolvido para rodar no PC
+
+
+        4. Qual o resultado esperado?
+	    - Gerenciamento
+            - Histórico do que já foi cadastrado
+        
+        
+        5. Quais os passos para alcançar esse objetivo?
+
+            > Modelagem POO em TS
+            > Refinamento - Armazenamento em arquivo ou memória
+            > Priorização e refinamento técnico
+	    > Criação de interface com os atributos e metodos para serem reutilizados
+            > Início do desenvolvimento
+                > Definir a estrutura de pastas
+                > Configura a base do projeto (Instalção do Node, inicio do projeto e  instalação de dependências)
+                ...Tasks
+            > Homologação 
+            > Go Live
