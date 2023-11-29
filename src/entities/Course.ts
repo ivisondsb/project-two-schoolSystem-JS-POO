@@ -8,7 +8,7 @@ const prompt = promptSync();
 export class Course implements CoursesMethodsProps {
     public name: CourseProps['name'];
     public shift: CourseProps['shift'];
-    public disciplines: Discipline[] = [];
+    public disciplines: CourseProps['disciplines'] = [];
     public static courses: Course[] = [];
 
     constructor(name: string, shift: string) {
@@ -87,13 +87,14 @@ export class Course implements CoursesMethodsProps {
                     const newShift = prompt(`Novo turno (${selectedCourse.shift}): `) || selectedCourse.shift;
                     const course = Course.courses[numberOption - 1]
                     for (let index = 0; index < course.disciplines.length; index++) {
-                      console.log(`${index + 1}. Disciplina: ${course.disciplines[index]}`);                    
+                      console.log(`${index + 1}. Disciplina: ${course.disciplines[index].getName()}`);                
                     }
                     const DisciplineInput = prompt(`Escolha o número da disciplina para atualizar: '`);
                     const disciplineIndex = Number(DisciplineInput);
-                    
                     const newDiscipline = prompt(`Novo nome da disciplina: `);
-                    console.log(selectedCourse.disciplines[disciplineIndex])
+                    
+                    const selectedDiscipline = course.disciplines[disciplineIndex];
+                    console.log(selectedDiscipline.setName(newDiscipline));
                     selectedCourse.name = newName;
                     selectedCourse.shift = newShift;
 
@@ -179,7 +180,7 @@ export class Course implements CoursesMethodsProps {
         }
     }
 
-    /*public listDisciplines(): void {
+    public listDisciplines(): void {
         console.log('\n=== Consultar Disciplinas ===');
     
         // Exibir a lista de cursos disponíveis
@@ -215,5 +216,5 @@ export class Course implements CoursesMethodsProps {
         } else {
             console.log('Opção inválida de curso.');
         }
-    }*/
+    }
 }

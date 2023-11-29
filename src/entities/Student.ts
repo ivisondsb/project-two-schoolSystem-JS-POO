@@ -1,22 +1,23 @@
-import { Course } from './Course';
-import { Discipline } from './Discipline';
-import * as promptSync from 'prompt-sync'
+import * as promptSync from 'prompt-sync';
+import { StudentProps, StudentsMethodsProps } from "../interfaces/Students";
+import { Course } from "./Course";
 
-const prompt = promptSync()
+const prompt = promptSync();
 
-export class Student {
-  private name: string;
-  private age: number;
-  private course: Course;
-  private id: number
-  private static students: Student[] = [];
+export class Student implements StudentsMethodsProps {
+  private name: StudentProps["name"];
+  private age: StudentProps["age"];
+  private course: StudentProps["course"];
+  private id: StudentProps["id"];
+  private students: StudentProps['students'] = [];
+
   private static studentInstance: Course = new Course('', '');
 
   constructor(name: string, age: number, course: Course, id: number) {
     this.name = name;
     this.age = age;
     this.course = course;
-    this.id = id
+    this.id = id;
   }
 
   public showData(): void {
@@ -26,7 +27,7 @@ export class Student {
     console.log(`Nome: ${this.course.name}`);
     console.log(`Turno: ${this.course.shift}`);
     console.log(`Disciplinas:`);
-    //Discipline.listDisciplines();
+    Student.studentInstance.listDisciplines();
   }
 
   public getName(): string {
@@ -44,75 +45,112 @@ export class Student {
   public getId(): number {
     return this.id;
   }
-  
-  /*public static listStudents(): void {
-    if (this.students.length === 0) {
-        console.log(`No students found in the course ${this.name}.`);
-    } else {
-        console.log(`Students in the course ${this.name}:`);
-        this.students.forEach(student => {
-            student.showInfo();
-        });
-    }
-}*/
 
-  /*public static removeStudent(studentId: string): void {
-    const studentIndex = this.students.findIndex(student => student.getId() === studentId);
-    if (studentIndex === -1) {
-        throw new Error(`Student with ID ${studentId} not found in the course.`);
-    }
-    Student.students.splice(studentIndex, 1);
-}*/
+  public registerStudent(name: string, age: number): void {
+    try{
+      if (!this.isOnlyLetters(name)) {
+        throw new Error('Nome inválido. Por favor, insira apenas letras.');
+      }
 
-  public static registerStudent(): void {
-    
+      if (isNaN(Number(age))) {
+        throw new Error('Idade inválida. Por favor, insira apenas números.');
+      }
+      console.log("Cursos Disponíveis:");
+      for (let i = 0; i < Course.courses.length; i++) {
+        console.log(`${i + 1}. ${Course.courses[i].name}`);
+      }
+      
+      const courseInput = Number(prompt("Escolha o número do curso: "));
+
+      if (isNaN(Number(courseInput))) {
+        throw new Error('Curso inválido. Por favor, insira apenas números.');
+      }
+
+      const courseIndex = courseInput - 1;
+      const selectedCourse = Course.courses[courseIndex];
+      if (courseIndex >= Course.courses.length) {
+        throw new Error(`Este curso não existe`);
+      }
+
+      let newStudentId = this.students.length + 1;
+      const newStudent = new Student(name, age, selectedCourse, newStudentId);
+      this.students.push(newStudent);
+      
+      console.log("Aluno cadastrado com sucesso!");
+    } catch (error: any) {
+      console.log(error.message);
+    }
+  }
+
+  public removeStudent() {
     try {
-      const name: string = (prompt('Nome do aluno: ') || '');
-
-    if (!this.isOnlyLetters(name)) {
-      throw new Error('Nome inválido. Por favor, insira apenas letras.');
-  }
-
-    const ageInput: string = (prompt('Idade do aluno: ')) || '';
-
-    if (isNaN(Number(ageInput))) {
-      throw new Error('Idade inválida. Por favor, insira apenas números.');
-  }
-  
-    const age = Number(ageInput)
-
-    console.log('Cursos Disponíveis:');
-    for (let i = 0; i < this.studentInstance.courses.length; i++) {
-      console.log(`${i + 1}. ${this.studentInstance.courses[i].name}`);
+      if (this.students.length === 0) {
+        throw new Error("Não existem estudantes cadastrados");
+      }
+      const studentId = Number(prompt("Informe o id do aluno: "));
+      for (let i = 0; i < this.students.length; i++) {
+        if (this.students[i].id === studentId) {
+          this.students.splice(i, 1);
+          return "Aluno removido com sucesso.";
+        }
+      }
+      return "Aluno não encontrado.";
+    } catch (error: any) {
+      console.log(error.message);
     }
-
-    const courseInput : string = (prompt('Escolha o número do curso: '));
-
-    if (isNaN(Number(courseInput))) {
-      throw new Error('Curso inválido. Por favor, insira apenas números.');
   }
 
-    const courseIndex = Number(courseInput) - 1;
-    const selectedCourse = this.studentInstance.courses[courseIndex];
-
-    if (courseIndex >= this.studentInstance.courses.length) {
-      throw new Error(`Este curso não existe`)
+  public checkStudent() {
+    try {
+      if (this.students.length === 0) {
+        throw new Error("Não existem estudantes cadastrados");
+      }
+      const studentId = Number(prompt("Informe o id do aluno: "));
+      for (let i = 0; i < this.students.length; i++) {
+        if (this.students[i].id === studentId) {
+          return this.students[studentId].showData();
+        }
+      }
+      return "Aluno não encontrado";
+    } catch (error: any) {
+      console.log(error.message);
     }
+  }
 
-    let newStudentId = this.students.length + 1
+  public updateStudent() {
+    try {
+      if (this.students.length === 0) {
+        throw new Error("Não existem estudantes cadastrados");
+      }
+      const studentId = Number(prompt("Informe o id do aluno: "));
+      for (let i = 0; i < this.students.length; i++) {
+        if (this.students[i].id === studentId) {
+          const student = this.students[i];
+          const newName = prompt("Insira o nome do aluno: ") || student.name;
+          const newAge = Number(
+            prompt("Insira a idade do aluno: ") || student.age
+          );
+          const newCourse = String(
+            prompt("Insira o curso do aluno: ") || student.course.name
+          );
 
-    const newStudent = new Student(name, age, selectedCourse, newStudentId);
-    Student.students.push(newStudent);
+          this.students[i].name = newName;
+          this.students[i].age = newAge;
+          this.students[i].course.name = newCourse;
 
-    console.log('Aluno cadastrado com sucesso!');
+          return "As informações do aluno foram atualizadas.";
+        }
+      }
+      return "Aluno não encontrado.";
+    } catch (error: any) {
+      console.log(error.message);
+    }
+  }
 
-  } catch(error: any) {
-    console.log(error.message)
+  private isOnlyLetters(input: string): boolean {
+    return /^[a-zA-Z\s]+$/.test(input);
   }
 
 }
-private static isOnlyLetters(input: string): boolean {
-  return /^[a-zA-Z\s]+$/.test(input);
-}
-}
+
 

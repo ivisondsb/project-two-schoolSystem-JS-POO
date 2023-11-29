@@ -29,10 +29,10 @@ export class Menu {
 
     static showMenu() {
         console.log('========= MENU =========');
-        console.log('1 - Gerenciar Alunos');
-        console.log('2 - Gerenciar Disciplinas');
-        console.log('3 - Gerenciar Cursos');
-        console.log('4 - Sair');
+        console.log('1. Gerenciar Alunos');
+        console.log('2. Gerenciar Disciplinas');
+        console.log('3. Gerenciar Cursos');
+        console.log('4. Sair');
 
         return prompt('Escolha uma opção: ');
     }
