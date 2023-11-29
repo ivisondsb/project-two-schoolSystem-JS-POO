@@ -1,12 +1,22 @@
 export class Discipline {
-    public disciplineName: string;
-    public workload: number;
-    public grade: number;
+    private _disciplineName: string;
+    private _workload: number;
+    private _grade: number;
 
-    constructor(disciplineName: string, workload: number) {
-      this.disciplineName = disciplineName;
-      this.workload = workload;
-      this.grade = 0;
+    constructor(disciplineName: string, workload: number, grade: number) {
+      this._disciplineName = disciplineName;
+      this._workload = workload;
+      this._grade = grade;
+  }
+  getName(){
+    return this._disciplineName;
+  }
+
+  getWorkload(){
+    return this._workload;
+  }
+
+  getGrade(){
+    return this._grade;
   }
 }
-  
