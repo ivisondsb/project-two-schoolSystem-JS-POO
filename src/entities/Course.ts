@@ -15,7 +15,6 @@ export class Course implements CoursesMethodsProps {
         this.shift = shift;
         this.name = name;
         this.disciplines = [];
-        Course.courses = [];
     }
 
     public addCourse(name: string, shift: string): void {
@@ -25,10 +24,10 @@ export class Course implements CoursesMethodsProps {
         if (Course.courses.find((course) => course.name === name)) {
             console.log('O curso já está cadastrado.');
             return;
+        } else{
+            Course.courses.push(course);
+            console.log('\nO curso foi cadastrado.');
         }
-        Course.courses.push(course);
-    
-        console.log('\nO curso foi cadastrado.');
     
         const addDiscipline = prompt('Deseja adicionar uma disciplina ao curso? (S para Sim, qualquer tecla para Não): ');
     
@@ -39,13 +38,14 @@ export class Course implements CoursesMethodsProps {
 
     public listCourses(): void {
         console.log('\n=== Consultar Cursos ===');
-
+    
         if (Course.courses.length === 0) {
             console.log('Nenhum curso cadastrado.');
         } else {
-            Course.courses.forEach((course, index) => {
+            for (let index = 0; index < Course.courses.length; index++) {
+                const course = Course.courses[index];
                 console.log(`${index + 1}. Nome: ${course.name}, Turno: ${course.shift}`);
-            });
+            }
         }
     }
 
@@ -161,6 +161,44 @@ export class Course implements CoursesMethodsProps {
             if (addInAnotherCourse.toUpperCase() === 'S') {
                 // Se quiser adicionar em outro curso, chamar novamente o método
                 this.addDisciplineToCourseManually();
+            }
+        } else {
+            console.log('Opção inválida de curso.');
+        }
+    }
+
+    public listDisciplines(): void {
+        console.log('\n=== Consultar Disciplinas ===');
+    
+        // Exibir a lista de cursos disponíveis
+        this.listCourses();
+    
+        if (Course.courses.length === 0) {
+            console.log('Nenhum curso disponível.');
+            return;
+        }
+    
+        // Solicitar ao usuário que escolha um curso
+        const courseOption = prompt('Escolha o número do curso para visualizar disciplinas (ou pressione Enter para voltar): ');
+    
+        if (!courseOption || courseOption.trim() === '') {
+            return; // Usuário optou por voltar
+        }
+    
+        const courseNumber = Number(courseOption);
+    
+        if (courseNumber > 0 && courseNumber <= Course.courses.length) {
+            const selectedCourse = Course.courses[courseNumber - 1];
+    
+            console.log(`\nDisciplinas do curso ${selectedCourse.name}:`);
+    
+            if (selectedCourse.disciplines.length === 0) {
+                console.log('Nenhuma disciplina cadastrada para este curso.');
+            } else {
+                for (let index = 0; index < selectedCourse.disciplines.length; index++) {
+                    const discipline = selectedCourse.disciplines[index];
+                    console.log(`${index + 1}. ${discipline.getName()}, Carga Horária: ${discipline.getWorkload()}, Nota: ${discipline.getGrade()}`);
+                }
             }
         } else {
             console.log('Opção inválida de curso.');
