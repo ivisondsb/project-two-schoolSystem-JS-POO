@@ -442,7 +442,6 @@ export class Course implements CoursesMethodsProps {
         }
     }
     
-
     private static isOnlyLetters(input: string): boolean {
         return /^[a-zA-Z\s]+$/.test(input);
     }
