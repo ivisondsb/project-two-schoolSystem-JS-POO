@@ -7,20 +7,22 @@ export class Course implements CoursesMethodsProps{
     public name: CourseProps['name'];
     public shift: CourseProps['shift'];
     public disciplines: CourseProps['disciplines'];
-    public students: CourseProps['students'];
-    public courses: CourseProps['courses'] = [];
+    public courses: Course[] = [];
 
     constructor(name: string, shift: string) {
         this.shift = shift;
         this.name = name;
         this.disciplines = [];
-        this.students = [];
     }
 
     public addCourse(name: string, shift: string): void {
         console.log('\n=== Cadastrar Curso ===');
 
         const course = new Course(name, shift);
+        if (this.courses.find((course) => course.name === name)) {
+            console.log('O curso já está cadastrado.');
+            return;
+        }
         this.courses.push(course);
 
         console.log('\nO curso foi cadastrado.');
@@ -35,21 +37,6 @@ export class Course implements CoursesMethodsProps{
             this.courses.forEach((course, index) => {
             console.log(`${index + 1}. Nome: ${course.name}, Turno: ${course.shift}`);
             });
-    
-            const option = prompt('Escolha o número do curso para mais detalhes (ou pressione Enter para voltar): ');
-            const numberOption = Number(option)
-            if (option && option.trim() !== '') {
-                const selectedCourse = this.courses[numberOption - 1];
-                if (numberOption > this.courses.length)
-                if (selectedCourse) {
-                    console.log(`Detalhes do Curso ${selectedCourse.name}:`);
-                    console.log(`Turno: ${selectedCourse.shift}`);
-                    console.log('Disciplinas:');
-                    //   selectedCourse.listDisciplines();
-                } else {
-                    console.log('Opção inválida. Curso não encontrado.');
-                }
-            }
         }
     }
 
@@ -93,6 +80,6 @@ export class Course implements CoursesMethodsProps{
               console.log('Curso não encontrado.');
             }
           }
+        }
     }
-}
 }
