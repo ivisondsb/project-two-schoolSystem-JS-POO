@@ -23,7 +23,6 @@ export class StudentsSubMenu {
 
       switch (option) {
         case '1':
-          Student.registerStudent();
           break;
         case '2':
           Student.listStudents();
@@ -40,7 +39,5 @@ export class StudentsSubMenu {
           console.log('Opção inválida.');
       }
     }
-  }
-
 }
 

@@ -3,7 +3,8 @@ import { Course } from './Course';
 
 const prompt = promptSync()
 
-export class CoursesSubMenu {
+  private static courseInstance: Course = new Course('', '');
+
   public static start(): void {
     while (true) {
       console.log('\n=== Gerenciar Cursos ===');
@@ -17,16 +18,15 @@ export class CoursesSubMenu {
 
       switch (opcao) {
         case '1':
-          console.log('bla')
+          CoursesSubMenu.courseInstance.addCourse(prompt('Digite o nome do curso: '), prompt('Digite o turno do curso: '));
           break;
         case '2':
-          Course.consultCourse()
+          CoursesSubMenu.courseInstance.listCourses();
           break;
         case '3':
-          console.log('bla')
+          CoursesSubMenu.courseInstance.removeCourse(prompt('Digite o nome do curso: '));
           break;
-        case '4':
-          Course.updateCourse()
+          CoursesSubMenu.courseInstance.updateCourse();
           break;
         case '5':
           return;
@@ -34,9 +34,6 @@ export class CoursesSubMenu {
           console.log('Opção inválida.');
       }
     }
-  }
-
-
 }
 
   

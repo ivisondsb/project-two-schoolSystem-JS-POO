@@ -3,7 +3,7 @@ export class Discipline {
     workload: number;
     grade: number;
     public disciplines: Discipline[];
-  
+
     constructor(disciplineName: string, workload: number) {
       this.disciplineName = disciplineName;
       this.workload = workload;
