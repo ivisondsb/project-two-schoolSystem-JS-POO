@@ -22,7 +22,7 @@ export class DisciplinesSubMenu {
           DisciplinesSubMenu.courseInstance.addDisciplineToCourseManually();
           break;
         case '2':
-          DisciplinesSubMenu.courseInstance.listDisciplines();
+          DisciplinesSubMenu.courseInstance.consultDisciplines();
           break;
         case '3':
           DisciplinesSubMenu.courseInstance.removeDisciplineByIndex();
