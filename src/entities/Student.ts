@@ -6,6 +6,8 @@ export class Student {
   private age: number;
   private course: Course;
   private id: number
+  private static students: Student[] = [];
+  private static studentInstance: Course = new Course('', '');
 
   constructor(name: string, age: number, course: Course, id: number) {
     this.name = name;
@@ -41,22 +43,22 @@ export class Student {
   }
   
   public static listStudents(): void {
-    if (Course.students.length === 0) {
+    if (this.students.length === 0) {
         console.log(`No students found in the course ${this.name}.`);
     } else {
         console.log(`Students in the course ${this.name}:`);
-        Course.students.forEach(student => {
+        this.students.forEach(student => {
             student.showInfo();
         });
     }
 }
 
   public static removeStudent(studentId: string): void {
-    const studentIndex = Course.students.findIndex(student => student.getId() === studentId);
+    const studentIndex = this.students.findIndex(student => student.getId() === studentId);
     if (studentIndex === -1) {
         throw new Error(`Student with ID ${studentId} not found in the course.`);
     }
-    Course.students.splice(studentIndex, 1);
+    Student.students.splice(studentIndex, 1);
 }
 
   public static registerStudent(): void {
@@ -64,21 +66,21 @@ export class Student {
     const age = Number(prompt('Idade do aluno: '));
 
     console.log('Cursos Disponíveis:');
-    for (let i = 0; i < Course.courses.length; i++) {
-      console.log(`${i + 1}. ${Course.courses[i].name}`);
+    for (let i = 0; i < this.studentInstance.courses.length; i++) {
+      console.log(`${i + 1}. ${this.studentInstance.courses[i].name}`);
     }
 
     const courseIndex = Number(prompt('Escolha o número do curso: ')) - 1;
-    const selectedCourse = Course.courses[courseIndex];
+    const selectedCourse = this.studentInstance.courses[courseIndex];
 
-    if (courseIndex >= Course.courses.length) {
+    if (courseIndex >= this.studentInstance.courses.length) {
       throw new Error(`Este curso não existe`)
     }
 
-    let newStudentId = Course.students.length + 1
+    let newStudentId = this.students.length + 1
 
     const newStudent = new Student(name, age, selectedCourse, newStudentId);
-    Course.students.push(newStudent);
+    Student.students.push(newStudent);
 
     console.log('Aluno cadastrado com sucesso!');
   }
