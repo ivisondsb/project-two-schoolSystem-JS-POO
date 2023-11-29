@@ -1,13 +1,17 @@
+import * as promptSync from 'prompt-sync';
+import { StudentProps, StudentsMethodsProps } from "../interfaces/Students";
 import { Course } from "./Course";
-import { Discipline } from "./Discipline";
 
-export class Student {
-  private name: string;
-  private age: number;
-  private course: Course;
-  private id: number;
-  private static students: Student[] = [];
-  private static studentInstance: Course = new Course("", "");
+const prompt = promptSync();
+
+export class Student implements StudentsMethodsProps {
+  private name: StudentProps["name"];
+  private age: StudentProps["age"];
+  private course: StudentProps["course"];
+  private id: StudentProps["id"];
+  private students: StudentProps['students'] = [];
+
+  private static studentInstance: Course = new Course('', '');
 
   constructor(name: string, age: number, course: Course, id: number) {
     this.name = name;
@@ -23,7 +27,7 @@ export class Student {
     console.log(`Nome: ${this.course.name}`);
     console.log(`Turno: ${this.course.shift}`);
     console.log(`Disciplinas:`);
-    Discipline.listDisciplines();
+    Student.studentInstance.listDisciplines();
   }
 
   public getName(): string {
@@ -42,31 +46,43 @@ export class Student {
     return this.id;
   }
 
-  public static registerStudent(): void {
-    const name: string = prompt("Nome do aluno: ") || "";
-    const age = Number(prompt("Idade do aluno: "));
+  public registerStudent(name: string, age: number): void {
+    try{
+      if (!this.isOnlyLetters(name)) {
+        throw new Error('Nome inválido. Por favor, insira apenas letras.');
+      }
 
-    console.log("Cursos Disponíveis:");
-    for (let i = 0; i < this.studentInstance.courses.length; i++) {
-      console.log(`${i + 1}. ${this.studentInstance.courses[i].name}`);
+      if (isNaN(Number(age))) {
+        throw new Error('Idade inválida. Por favor, insira apenas números.');
+      }
+      console.log("Cursos Disponíveis:");
+      for (let i = 0; i < Course.courses.length; i++) {
+        console.log(`${i + 1}. ${Course.courses[i].name}`);
+      }
+      
+      const courseInput = Number(prompt("Escolha o número do curso: "));
+
+      if (isNaN(Number(courseInput))) {
+        throw new Error('Curso inválido. Por favor, insira apenas números.');
+      }
+
+      const courseIndex = courseInput - 1;
+      const selectedCourse = Course.courses[courseIndex];
+      if (courseIndex >= Course.courses.length) {
+        throw new Error(`Este curso não existe`);
+      }
+
+      let newStudentId = this.students.length + 1;
+      const newStudent = new Student(name, age, selectedCourse, newStudentId);
+      this.students.push(newStudent);
+      
+      console.log("Aluno cadastrado com sucesso!");
+    } catch (error: any) {
+      console.log(error.message);
     }
-
-    const courseIndex = Number(prompt("Escolha o número do curso: ")) - 1;
-    const selectedCourse = this.studentInstance.courses[courseIndex];
-
-    if (courseIndex >= this.studentInstance.courses.length) {
-      throw new Error(`Este curso não existe`);
-    }
-
-    let newStudentId = this.students.length + 1;
-
-    const newStudent = new Student(name, age, selectedCourse, newStudentId);
-    Student.students.push(newStudent);
-
-    console.log("Aluno cadastrado com sucesso!");
   }
 
-  public static removeStudent() {
+  public removeStudent() {
     try {
       if (this.students.length === 0) {
         throw new Error("Não existem estudantes cadastrados");
@@ -84,7 +100,7 @@ export class Student {
     }
   }
 
-  public static checkStudent() {
+  public checkStudent() {
     try {
       if (this.students.length === 0) {
         throw new Error("Não existem estudantes cadastrados");
@@ -101,7 +117,7 @@ export class Student {
     }
   }
 
-  public static updateStudent() {
+  public updateStudent() {
     try {
       if (this.students.length === 0) {
         throw new Error("Não existem estudantes cadastrados");
@@ -129,5 +145,9 @@ export class Student {
     } catch (error: any) {
       console.log(error.message);
     }
+  }
+
+  private isOnlyLetters(input: string): boolean {
+    return /^[a-zA-Z\s]+$/.test(input);
   }
 }
