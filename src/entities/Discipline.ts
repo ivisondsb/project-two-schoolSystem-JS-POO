@@ -1,14 +1,17 @@
-export class Discipline {
-    disciplineName: string;
-    workload: number;
-    grade: number;
-    public disciplines: Discipline[];
+// import { disciplineProps } from "../interfaces/Discipline"
 
-    constructor(disciplineName: string, workload: number) {
-      this.disciplineName = disciplineName;
-      this.workload = workload;
-      this.grade = 0;
-      this.disciplines = [];
+export class Discipline /*implements disciplineProps*/ {
+    private _disciplineName: string;
+    private _workload: number;
+    private _grade: number;
+
+    constructor(disciplineName: string, workload: number, grade: number) {
+      this._disciplineName = disciplineName;
+      this._workload = workload;
+      this._grade = grade;
+  }
+  getName(){
+    return this._disciplineName;
   }
 
   /*public static addDiscipline(discipline: Discipline): void {
