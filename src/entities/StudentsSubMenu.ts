@@ -28,7 +28,7 @@ export class StudentsSubMenu {
           Student.listStudents();
           break;
         case '3':
-          Student.removeStudent();
+          // Student.removeStudent();
           break;
         case '4':
           console.log('update aluno');

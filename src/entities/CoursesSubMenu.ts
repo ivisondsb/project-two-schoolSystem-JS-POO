@@ -27,6 +27,7 @@ export class CoursesSubMenu {
         case '3':
           CoursesSubMenu.courseInstance.removeCourse(prompt('Digite o nome do curso: '));
           break;
+        case '4':
           CoursesSubMenu.courseInstance.updateCourse();
           break;
         case '5':
@@ -35,6 +36,6 @@ export class CoursesSubMenu {
           console.log('Opção inválida.');
       }
     }
-}
+  }
 }
   
