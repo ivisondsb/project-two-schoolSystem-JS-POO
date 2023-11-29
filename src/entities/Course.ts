@@ -348,6 +348,81 @@ export class Course implements CoursesMethodsProps {
             console.log(error.message)
         }
     }
+
+    public updateDiscipline(): void {
+        console.log('\n=== Atualizar Disciplina ===');
+    
+        try {
+            this.listCourses();
+    
+            if (Course.courses.length === 0) {
+                console.log('Nenhum curso disponível.');
+                return;
+            }
+    
+            const courseOption = prompt('Escolha o número do curso para atualizar disciplina (ou pressione Enter para voltar): ');
+    
+            if (!courseOption || isNaN(Number(courseOption))) {
+                throw new Error('\nOpção inválida!\n');
+            } else {
+                if (courseOption.trim() === '') {
+                    return;
+                }
+            }
+    
+            const courseNumber = Number(courseOption);
+    
+            if (courseNumber > 0 && courseNumber <= Course.courses.length) {
+                const selectedCourse = Course.courses[courseNumber - 1];
+                console.log(`\nDisciplinas do curso ${selectedCourse.name}:`);
+    
+                if (selectedCourse.disciplines.length === 0) {
+                    console.log('Nenhuma disciplina cadastrada para este curso.');
+                } else {
+                    selectedCourse.disciplines.forEach((discipline, index) => {
+                        console.log(`${index + 1}. ${discipline.getName()}, Carga Horária: ${discipline.getWorkload()}, Nota: ${discipline.getGrade()}`);
+                    });
+    
+                    const disciplineIndexOption = prompt('Escolha o número da disciplina para atualizar (ou pressione Enter para voltar): ');
+    
+                    if (!disciplineIndexOption || isNaN(Number(disciplineIndexOption))) {
+                        throw new Error('\nOpção inválida!\n');
+                    } else {
+                        if (disciplineIndexOption.trim() === '') {
+                            return;
+                        }
+                    }
+    
+                    const disciplineIndex = Number(disciplineIndexOption);
+    
+                    if (disciplineIndex > 0 && disciplineIndex <= selectedCourse.disciplines.length) {
+                        const selectedDiscipline = selectedCourse.disciplines[disciplineIndex - 1];
+    
+                        console.log(`\nAtualizando disciplina ${selectedDiscipline.getName()} do curso ${selectedCourse.name}:`);
+    
+                        const newName = prompt(`Novo nome (${selectedDiscipline.getName()}): `) || selectedDiscipline.getName();
+                        const newWorkload = Number(prompt(`Nova carga horária (${selectedDiscipline.getWorkload()}): `)) || selectedDiscipline.getWorkload();
+                        const newGrade = Number(prompt(`Nova nota (${selectedDiscipline.getGrade()}): `)) || selectedDiscipline.getGrade();
+    
+                        selectedDiscipline.setName(newName);
+                        selectedDiscipline.setWorkload(newWorkload);
+                        selectedDiscipline.setGrade(newGrade);
+    
+                        console.log('A disciplina foi atualizada.');
+    
+                        console.log(`Nova informação da disciplina ${selectedDiscipline.getName()}: Carga Horária - ${selectedDiscipline.getWorkload()}, Nota - ${selectedDiscipline.getGrade()}`);
+                    } else {
+                        throw new Error('\nOpção inválida de disciplina.\n');
+                    }
+                }
+            } else {
+                throw new Error('Opção inválida de curso.');
+            }
+        } catch (error: any) {
+            console.log(error.message);
+        }
+    }
+
     private static isOnlyLetters(input: string): boolean {
         return /^[a-zA-Z\s]+$/.test(input);
     }
