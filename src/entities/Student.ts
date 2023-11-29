@@ -101,7 +101,31 @@ export class Student {
     const studentId = Number(prompt("Informe o id do aluno: "));
     for (let i = 0; i < this.students.length; i++) {
       if (this.students[i].id === studentId) {
-        console.log(this.students[studentId].showData);
+        console.log(this.students[studentId].showData());
+      } else {
+        throw new Error(`Aluno não encontrado.`);
+      }
+    }
+  }
+
+  public static updateStudent() {
+    const studentId = Number(prompt("Informe o id do aluno: "));
+    for (let i = 0; i < this.students.length; i++) {
+      if (this.students[i].id === studentId) {
+        const student = this.students[i];
+        const newName = prompt("Insira o nome do aluno: ") || student.name;
+        const newAge = Number(
+          prompt("Insira a idade do aluno: ") || student.age
+        );
+        const newCourse = String(
+          prompt("Insira o curso do aluno: ") || student.course.name
+        );
+
+        this.students[i].name = newName;
+        this.students[i].age = newAge;
+        this.students[i].course.name = newCourse;
+
+        console.log("As informações do aluno foram atualizadas.");
       } else {
         throw new Error(`Aluno não encontrado.`);
       }
