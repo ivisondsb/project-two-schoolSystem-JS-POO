@@ -18,25 +18,26 @@ export class Course implements CoursesMethodsProps {
     }
 
     public addCourse(name: string, shift: string): void {
-        console.log('\n=== Cadastrar Curso ===');
+      console.log('\n=== Cadastrar Curso ===');
+      
+      const course = new Course(name, shift);
+      if (Course.courses.find((course) => course.name === name)) {
+          console.log('O curso já está cadastrado.');
+          return;
+      } else{
+          Course.courses.push(course);
+          console.log('\nO curso foi cadastrado.');
+      }
 
-        const course = new Course(name, shift);
-        if (Course.courses.find((course) => course.name === name)) {
-            console.log('O curso já está cadastrado.');
-            return;
-        } else {
-            Course.courses.push(course);
-            console.clear();
-            console.log(`\nO curso ${course.name} foi cadastrado.`);
-        }
+      this.addDisciplineToCourse(course);
 
-        const addDiscipline = prompt('Deseja adicionar uma disciplina ao curso? (S para Sim, qualquer tecla para Não): ');
+      const addDiscipline = prompt('Deseja adicionar uma nova disciplina ao curso? (S para Sim, qualquer tecla para Não): ');
 
-        if (addDiscipline.toUpperCase() === 'S') {
-            this.addDisciplineToCourse(course);
-        }
+      if (addDiscipline.toUpperCase() === 'S') {
+          this.addDisciplineToCourse(course);
+      }
     }
-
+    
     public listCourses(): void {
         console.log('\n=== Consultar Cursos ===');
 
