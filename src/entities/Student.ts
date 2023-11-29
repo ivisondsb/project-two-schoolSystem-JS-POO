@@ -1,4 +1,5 @@
 import { Course } from './Course';
+import { Discipline } from './Discipline';
 
 export class Student {
   private name: string;
@@ -20,7 +21,7 @@ export class Student {
     console.log(`Nome: ${this.course.name}`);
     console.log(`Turno: ${this.course.shift}`);
     console.log(`Disciplinas:`);
-    this.course.listDisciplines();
+    Discipline.listDisciplines();
   }
 
   public getName(): string {
@@ -39,4 +40,46 @@ export class Student {
     return this.id;
   }
   
+  public static listStudents(): void {
+    if (Course.students.length === 0) {
+        console.log(`No students found in the course ${this.name}.`);
+    } else {
+        console.log(`Students in the course ${this.name}:`);
+        Course.students.forEach(student => {
+            student.showInfo();
+        });
+    }
+}
+
+  public static removeStudent(studentId: string): void {
+    const studentIndex = Course.students.findIndex(student => student.getId() === studentId);
+    if (studentIndex === -1) {
+        throw new Error(`Student with ID ${studentId} not found in the course.`);
+    }
+    Course.students.splice(studentIndex, 1);
+}
+
+  public static registerStudent(): void {
+    const name: string = prompt('Nome do aluno: ') || '';
+    const age = Number(prompt('Idade do aluno: '));
+
+    console.log('Cursos Disponíveis:');
+    for (let i = 0; i < Course.courses.length; i++) {
+      console.log(`${i + 1}. ${Course.courses[i].name}`);
+    }
+
+    const courseIndex = Number(prompt('Escolha o número do curso: ')) - 1;
+    const selectedCourse = Course.courses[courseIndex];
+
+    if (courseIndex >= Course.courses.length) {
+      throw new Error(`Este curso não existe`)
+    }
+
+    let newStudentId = Course.students.length + 1
+
+    const newStudent = new Student(name, age, selectedCourse, newStudentId);
+    Course.students.push(newStudent);
+
+    console.log('Aluno cadastrado com sucesso!');
+  }
 }

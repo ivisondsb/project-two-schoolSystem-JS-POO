@@ -23,14 +23,17 @@ export class StudentsSubMenu {
 
       switch (option) {
         case '1':
-          this.registerStudent();
+          Student.registerStudent();
           break;
         case '2':
-          console.log('bla bla bla')
+          Student.listStudents();
+          break;
         case '3':
-          console.log('bla bla bla')
+          Student.removeStudent();
+          break;
         case '4':
-          console.log('bla bla bla')
+          console.log('update aluno');
+          break;
         case '5':
           return;
         default:
@@ -39,27 +42,5 @@ export class StudentsSubMenu {
     }
   }
 
-  public static registerStudent(): void {
-    const name: string = prompt('Nome do aluno: ') || '';
-    const age = Number(prompt('Idade do aluno: '));
-
-    console.log('Cursos Disponíveis:');
-    for (let i = 0; i < CoursesSubMenu.courses.length; i++) {
-      console.log(`${i + 1}. ${CoursesSubMenu.courses[i].name}`);
-    }
-
-    const courseIndex = Number(prompt('Escolha o número do curso: ')) - 1;
-    const selectedCourse = CoursesSubMenu.courses[courseIndex];
-
-    if (courseIndex > CoursesSubMenu.courses.length) {
-      throw new Error(`Este curso não existe`)
-    }
-
-    let newStudentId = StudentsSubMenu.students.length + 1
-
-    const newStudent = new Student(name, age, selectedCourse, newStudentId);
-    StudentsSubMenu.students.push(newStudent);
-
-    console.log('Aluno cadastrado com sucesso!');
-  }
 }
+
