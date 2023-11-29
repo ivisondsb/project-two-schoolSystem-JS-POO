@@ -22,7 +22,17 @@ export class DisciplinesSubMenu {
 
       switch (option) {
         case '1':
-          console.log('bla bla');
+          console.log('add discipline');
+          break;
+        case '2':
+          Discipline.listDisciplines();
+          break;
+        case '3':
+          Discipline.removeDiscipline();
+          break;
+        case '4':
+          console.log('update discipline');
+          break;
         case '5':
           return;
         default:

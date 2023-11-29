@@ -3,8 +3,8 @@ import { Course } from './Course';
 
 const prompt = promptSync()
 
-export class CoursesSubMenu {
   private static courseInstance: Course = new Course('', '');
+
   public static start(): void {
     while (true) {
       console.log('\n=== Gerenciar Cursos ===');
@@ -26,7 +26,6 @@ export class CoursesSubMenu {
         case '3':
           CoursesSubMenu.courseInstance.removeCourse(prompt('Digite o nome do curso: '));
           break;
-        case '4':
           CoursesSubMenu.courseInstance.updateCourse();
           break;
         case '5':
@@ -35,7 +34,6 @@ export class CoursesSubMenu {
           console.log('Opção inválida.');
       }
     }
-  }
 }
 
   
