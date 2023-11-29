@@ -27,7 +27,7 @@ export class Student implements StudentsMethodsProps {
     console.log(`Nome: ${this.course.name}`);
     console.log(`Turno: ${this.course.shift}`);
     console.log(`Disciplinas:`);
-    Student.studentInstance.listDisciplines();
+    Student.studentInstance.consultDisciplines();
   }
 
   public getName(): string {
