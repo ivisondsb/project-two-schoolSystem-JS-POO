@@ -85,12 +85,23 @@ export class Student {
     console.log("Aluno cadastrado com sucesso!");
   }
 
-  public static removeStudent() {
+  public static removeStudent(): void {
     const studentId = Number(prompt("Informe o id do aluno: "));
     for (let i = 0; i < this.students.length; i++) {
       if (this.students[i].id === studentId) {
         this.students.splice(i, 1);
-        return "Aluno removido com sucesso.";
+        console.log("Aluno removido com sucesso.");
+      } else {
+        throw new Error(`Aluno não encontrado.`);
+      }
+    }
+  }
+
+  public static checkStudent(): void {
+    const studentId = Number(prompt("Informe o id do aluno: "));
+    for (let i = 0; i < this.students.length; i++) {
+      if (this.students[i].id === studentId) {
+        console.log(this.students[studentId].showData);
       } else {
         throw new Error(`Aluno não encontrado.`);
       }
