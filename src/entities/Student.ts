@@ -86,6 +86,9 @@ export class Student {
   }
 
   public static removeStudent(): void {
+    if (this.students.length === 0) {
+      throw new Error("Não existem estudantes cadastrados");
+    }
     const studentId = Number(prompt("Informe o id do aluno: "));
     for (let i = 0; i < this.students.length; i++) {
       if (this.students[i].id === studentId) {
@@ -98,6 +101,9 @@ export class Student {
   }
 
   public static checkStudent(): void {
+    if (this.students.length === 0) {
+      throw new Error("Não existem estudantes cadastrados");
+    }
     const studentId = Number(prompt("Informe o id do aluno: "));
     for (let i = 0; i < this.students.length; i++) {
       if (this.students[i].id === studentId) {
@@ -109,6 +115,9 @@ export class Student {
   }
 
   public static updateStudent() {
+    if (this.students.length === 0) {
+      throw new Error("Não existem estudantes cadastrados");
+    }
     const studentId = Number(prompt("Informe o id do aluno: "));
     for (let i = 0; i < this.students.length; i++) {
       if (this.students[i].id === studentId) {
