@@ -23,7 +23,7 @@ export class StudentsSubMenu {
 
       switch (option) {
         case '1':
-          this.registerStudent();
+          // this.registerStudent();
           break;
         case '2':
           console.log('bla bla bla')
@@ -39,27 +39,27 @@ export class StudentsSubMenu {
     }
   }
 
-  public static registerStudent(): void {
-    const name: string = prompt('Nome do aluno: ') || '';
-    const age = Number(prompt('Idade do aluno: '));
+  // public static registerStudent(): void {
+  //   const name: string = prompt('Nome do aluno: ') || '';
+  //   const age = Number(prompt('Idade do aluno: '));
 
-    console.log('Cursos Disponíveis:');
-    for (let i = 0; i < CoursesSubMenu.courses.length; i++) {
-      console.log(`${i + 1}. ${CoursesSubMenu.courses[i].name}`);
-    }
+  //   console.log('Cursos Disponíveis:');
+  //   for (let i = 0; i < CoursesSubMenu.courses.length; i++) {
+  //     console.log(`${i + 1}. ${CoursesSubMenu.courses[i].name}`);
+  //   }
 
-    const courseIndex = Number(prompt('Escolha o número do curso: ')) - 1;
-    const selectedCourse = CoursesSubMenu.courses[courseIndex];
+  //   const courseIndex = Number(prompt('Escolha o número do curso: ')) - 1;
+  //   const selectedCourse = CoursesSubMenu.courses[courseIndex];
 
-    if (courseIndex > CoursesSubMenu.courses.length) {
-      throw new Error(`Este curso não existe`)
-    }
+  //   if (courseIndex > CoursesSubMenu.courses.length) {
+  //     throw new Error(`Este curso não existe`)
+  //   }
 
-    let newStudentId = StudentsSubMenu.students.length + 1
+  //   let newStudentId = StudentsSubMenu.students.length + 1
 
-    const newStudent = new Student(name, age, selectedCourse, newStudentId);
-    StudentsSubMenu.students.push(newStudent);
+  //   const newStudent = new Student(name, age, selectedCourse, newStudentId);
+  //   StudentsSubMenu.students.push(newStudent);
 
-    console.log('Aluno cadastrado com sucesso!');
-  }
+  //   console.log('Aluno cadastrado com sucesso!');
+  // }
 }

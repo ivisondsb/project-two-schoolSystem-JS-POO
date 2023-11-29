@@ -1,107 +1,99 @@
-import { Student } from './Student';
-import { Discipline } from './Discipline';
-import { StudentProps } from '../interfaces/Students';
-import { StudentsMethodsProps } from '../interfaces/Students';
+import * as promptSync from 'prompt-sync';
+import { CourseProps } from '../interfaces/Courses';
+import { CoursesMethodsProps } from '../interfaces/Courses';
 
-export class Course {
-    public name: string;
-    public shift: string;
-    private disciplines: Discipline[];
-    private students: Student[];
-    private static courses: Course[] = [];
-    private enrollment: number;
+const prompt = promptSync();
+export class Course implements CoursesMethodsProps{
+    public name: CourseProps['name'];
+    public shift: CourseProps['shift'];
+    public disciplines: CourseProps['disciplines'];
+    public students: CourseProps['students'];
+    public courses: CourseProps['courses'] = [];
 
     constructor(name: string, shift: string) {
         this.name = name;
         this.shift = shift;
         this.disciplines = [];
         this.students = [];
-        this.enrollment = 0;
     }
 
-    public static registerCourse(course: Course): void {
-        const existingCourse = Course.courses.find(c => c.getName() === course.getName());
-        if (existingCourse) {
-            throw new Error(`Course ${course.getName()} already exists.`);
-        }
-        Course.courses.push(course);
-        console.log(`Course ${course.getName()} registered successfully.`);
+    public addCourse(name: string, shift: string): void {
+        console.log('\n=== Cadastrar Curso ===');
+
+        const course = new Course(name, shift);
+        this.courses.push(course);
+
+        console.log('\nO curso foi cadastrado.');
     }
 
-    public static removeCourse(courseName: string): void {
-        const courseIndex = Course.courses.findIndex(course => course.getName() === courseName);
-        if (courseIndex === -1) {
-            throw new Error(`Course ${courseName} not found.`);
-        }
-        Course.courses.splice(courseIndex, 1);
-        console.log(`Course ${courseName} removed successfully.`);
-    }
-
-    public addDiscipline(discipline: Discipline): void {
-        const existingDiscipline = this.disciplines.find(d => d.getName() === discipline.getName());
-        if (existingDiscipline) {
-            throw new Error(`Discipline ${discipline.getName()} already exists in the course.`);
-        }
-        this.disciplines.push(discipline);
-    }
-
-    public removeDiscipline(disciplineName: string): void {
-        const disciplineIndex = this.disciplines.findIndex(discipline => discipline.getName() === disciplineName);
-        if (disciplineIndex === -1) {
-            throw new Error(`Discipline ${disciplineName} not found in the course.`);
-        }
-        this.disciplines.splice(disciplineIndex, 1);
-    }
-
-    public listDisciplines(): void {
-        if (this.disciplines.length === 0) {
-            console.log(`No disciplines found in the course ${this.name}.`);
+    public listCourses(): void {
+        console.log('\n=== Consultar Cursos ===');
+        
+        if (this.courses.length === 0) {
+            console.log('Nenhum curso cadastrado.');
         } else {
-            console.log(`Disciplines in the course ${this.name}:`);
-            this.disciplines.forEach(discipline => {
-                console.log(discipline.getName());
+            this.courses.forEach((course, index) => {
+            console.log(`${index + 1}. Nome: ${course.name}, Turno: ${course.shift}`);
             });
+    
+            const option = prompt('Escolha o número do curso para mais detalhes (ou pressione Enter para voltar): ');
+            const numberOption = Number(option)
+            if (option && option.trim() !== '') {
+                const selectedCourse = this.courses[numberOption - 1];
+                if (numberOption > this.courses.length)
+                if (selectedCourse) {
+                    console.log(`Detalhes do Curso ${selectedCourse.name}:`);
+                    console.log(`Turno: ${selectedCourse.shift}`);
+                    console.log('Disciplinas:');
+                    //   selectedCourse.listDisciplines();
+                } else {
+                    console.log('Opção inválida. Curso não encontrado.');
+                }
+            }
         }
     }
 
-    public addStudent(student: Student): void {
-        const existingStudent = this.students.find(s => s.getId() === student.getId());
-        if (existingStudent) {
-            throw new Error(`Student ${student.getId()} is already enrolled in the course.`);
-        }
-        this.students.push(student);
-        this.enrollment++;
-    }
-
-    public removeStudent(studentId: string): void {
-        const studentIndex = this.students.findIndex(student => student.getId() === studentId);
-        if (studentIndex === -1) {
-            throw new Error(`Student with ID ${studentId} not found in the course.`);
-        }
-        this.students.splice(studentIndex, 1);
-        this.enrollment--;
-    }
-
-    public listStudents(): void {
-        if (this.students.length === 0) {
-            console.log(`No students found in the course ${this.name}.`);
+    public removeCourse(name: string): void {
+        const index = this.courses.findIndex((course) => course.name === name);
+    
+        if (index === -1) {
+          console.log('Curso não encontrado.');
         } else {
-            console.log(`Students in the course ${this.name}:`);
-            this.students.forEach(student => {
-                student.showInfo();
-            });
+          this.courses.splice(index, 1);
+          console.log('O curso foi removido.');
         }
     }
 
-    public getName(): string {
-        return this.name;
-    }
-
-    public getShift(): string {
-        return this.shift;
-    }
-
-    public getEnrollment(): number {
-        return this.enrollment;
+    public updateCourse(): void {
+        console.log('\n=== Atualizar Curso ===');
+        
+        if (this.courses.length === 0) {
+          console.log('Nenhum curso cadastrado.');
+        } else {
+            this.courses.forEach((course, index) => {
+            console.log(`${index + 1}. Nome: ${course.name}, Turno: ${course.shift}`);
+            });
+    
+          const option = prompt('Escolha o número do curso para atualizar (ou pressione Enter para voltar): ');
+    
+          if (option && option.trim() !== '') {
+            const numberOption = Number(option);
+            
+            if (numberOption <= this.courses.length) {
+              const selectedCourse = this.courses[numberOption - 1];
+              
+              console.log(`Atualizando curso ${selectedCourse.name}:`);
+              
+              const newName = prompt(`Novo nome (${selectedCourse.name}): `) || selectedCourse.name;
+              const newShift = prompt(`Novo turno (${selectedCourse.shift}): `) || selectedCourse.shift;
+    
+              selectedCourse.name = newName;
+              selectedCourse.shift = newShift;
+              console.log('O curso foi atualizado.');
+            } else {
+              console.log('Curso não encontrado.');
+            }
+          }
+        }
     }
 }

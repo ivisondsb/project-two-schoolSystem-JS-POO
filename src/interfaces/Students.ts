@@ -4,8 +4,8 @@ import { Discipline } from '../entities/Discipline';
 export interface StudentProps {
      name: string;
      shift: string;
-     disciplines: Discipline;
-     students: Student;
+     disciplines: Discipline[];
+     students: Student[];
      enrollment: number;
 }
 
