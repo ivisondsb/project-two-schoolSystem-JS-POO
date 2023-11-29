@@ -1,19 +1,19 @@
-import { Course } from './Course';
-import { Discipline } from './Discipline';
+import { Course } from "./Course";
+import { Discipline } from "./Discipline";
 
 export class Student {
   private name: string;
   private age: number;
   private course: Course;
-  private id: number
+  private id: number;
   private static students: Student[] = [];
-  private static studentInstance: Course = new Course('', '');
+  private static studentInstance: Course = new Course("", "");
 
   constructor(name: string, age: number, course: Course, id: number) {
     this.name = name;
     this.age = age;
     this.course = course;
-    this.id = id
+    this.id = id;
   }
 
   public showData(): void {
@@ -41,47 +41,59 @@ export class Student {
   public getId(): number {
     return this.id;
   }
-  
-  public static listStudents(): void {
-    if (this.students.length === 0) {
-        console.log(`No students found in the course ${this.name}.`);
-    } else {
-        console.log(`Students in the course ${this.name}:`);
-        this.students.forEach(student => {
-            student.showInfo();
-        });
-    }
-}
 
-  public static removeStudent(studentId: string): void {
-    const studentIndex = this.students.findIndex(student => student.getId() === studentId);
-    if (studentIndex === -1) {
-        throw new Error(`Student with ID ${studentId} not found in the course.`);
-    }
-    Student.students.splice(studentIndex, 1);
-}
+  //   public static listStudents(): void {
+  //     if (this.students.length === 0) {
+  //         console.log(`No students found in the course ${this.name}.`);
+  //     } else {
+  //         console.log(`Students in the course ${this.name}:`);
+  //         this.students.forEach(student => {
+  //             student.showInfo();
+  //         });
+  //     }
+  // }
+
+  //   public static removeStudent(studentId: string): void {
+  //     const studentIndex = this.students.findIndex(student => student.getId() === studentId);
+  //     if (studentIndex === -1) {
+  //         throw new Error(`Student with ID ${studentId} not found in the course.`);
+  //     }
+  //     Student.students.splice(studentIndex, 1);
+  // }
 
   public static registerStudent(): void {
-    const name: string = prompt('Nome do aluno: ') || '';
-    const age = Number(prompt('Idade do aluno: '));
+    const name: string = prompt("Nome do aluno: ") || "";
+    const age = Number(prompt("Idade do aluno: "));
 
-    console.log('Cursos Disponíveis:');
+    console.log("Cursos Disponíveis:");
     for (let i = 0; i < this.studentInstance.courses.length; i++) {
       console.log(`${i + 1}. ${this.studentInstance.courses[i].name}`);
     }
 
-    const courseIndex = Number(prompt('Escolha o número do curso: ')) - 1;
+    const courseIndex = Number(prompt("Escolha o número do curso: ")) - 1;
     const selectedCourse = this.studentInstance.courses[courseIndex];
 
     if (courseIndex >= this.studentInstance.courses.length) {
-      throw new Error(`Este curso não existe`)
+      throw new Error(`Este curso não existe`);
     }
 
-    let newStudentId = this.students.length + 1
+    let newStudentId = this.students.length + 1;
 
     const newStudent = new Student(name, age, selectedCourse, newStudentId);
     Student.students.push(newStudent);
 
-    console.log('Aluno cadastrado com sucesso!');
+    console.log("Aluno cadastrado com sucesso!");
+  }
+
+  public static removeStudent() {
+    const studentId = Number(prompt("Informe o id do aluno: "));
+    for (let i = 0; i < this.students.length; i++) {
+      if (this.students[i].id === studentId) {
+        this.students.splice(i, 1);
+        return "Aluno removido com sucesso.";
+      } else {
+        throw new Error(`Aluno não encontrado.`);
+      }
+    }
   }
 }
