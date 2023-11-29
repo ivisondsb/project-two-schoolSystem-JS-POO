@@ -42,25 +42,6 @@ export class Student {
     return this.id;
   }
 
-  //   public static listStudents(): void {
-  //     if (this.students.length === 0) {
-  //         console.log(`No students found in the course ${this.name}.`);
-  //     } else {
-  //         console.log(`Students in the course ${this.name}:`);
-  //         this.students.forEach(student => {
-  //             student.showInfo();
-  //         });
-  //     }
-  // }
-
-  //   public static removeStudent(studentId: string): void {
-  //     const studentIndex = this.students.findIndex(student => student.getId() === studentId);
-  //     if (studentIndex === -1) {
-  //         throw new Error(`Student with ID ${studentId} not found in the course.`);
-  //     }
-  //     Student.students.splice(studentIndex, 1);
-  // }
-
   public static registerStudent(): void {
     const name: string = prompt("Nome do aluno: ") || "";
     const age = Number(prompt("Idade do aluno: "));
