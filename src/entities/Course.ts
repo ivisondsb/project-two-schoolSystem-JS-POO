@@ -350,9 +350,9 @@ export class Course implements CoursesMethodsProps {
     }
 
     public updateDiscipline(): void {
-        console.log('\n=== Atualizar Disciplina ===');
-    
         try {
+            console.log('\n=== Atualizar Disciplina ===');
+    
             this.listCourses();
     
             if (Course.courses.length === 0) {
@@ -398,19 +398,38 @@ export class Course implements CoursesMethodsProps {
                     if (disciplineIndex > 0 && disciplineIndex <= selectedCourse.disciplines.length) {
                         const selectedDiscipline = selectedCourse.disciplines[disciplineIndex - 1];
     
-                        console.log(`\nAtualizando disciplina ${selectedDiscipline.getName()} do curso ${selectedCourse.name}:`);
+                        const currentName = selectedDiscipline.getName();
+                        const newName = prompt(`Novo nome (${currentName}): `) || currentName;
+
+                        if(!Course.isOnlyLetters(newName)) {
+                            throw new Error('Nome inválido.')
+                        }
     
-                        const newName = prompt(`Novo nome (${selectedDiscipline.getName()}): `) || selectedDiscipline.getName();
-                        const newWorkload = Number(prompt(`Nova carga horária (${selectedDiscipline.getWorkload()}): `)) || selectedDiscipline.getWorkload();
-                        const newGrade = Number(prompt(`Nova nota (${selectedDiscipline.getGrade()}): `)) || selectedDiscipline.getGrade();
+                        const currentWorkload = selectedDiscipline.getWorkload();
+                        const newWorkload = Number(prompt(`Nova carga horária (${currentWorkload}): `)) || currentWorkload;
+
+                        if(isNaN(newWorkload)) {
+                            throw new Error('Carga Horária inválida.')
+                        }
+    
+                        const currentGrade = selectedDiscipline.getGrade();
+                        const newGrade = Number(prompt(`Nova nota (${currentGrade}): `)) || currentGrade;
+
+                        if(isNaN(newGrade) || newGrade < 0 || newGrade > 10) {
+                            throw new Error('Nota inválida.')
+                        }
     
                         selectedDiscipline.setName(newName);
                         selectedDiscipline.setWorkload(newWorkload);
                         selectedDiscipline.setGrade(newGrade);
     
                         console.log('A disciplina foi atualizada.');
+
+                        const addDiscipline = prompt('Deseja adicionar uma disciplina ao curso? (S para Sim, qualquer tecla para Não): ');
+                        if (addDiscipline.toUpperCase() === 'S') {
+                            this.addDisciplineToCourse(selectedCourse);
+                        }
     
-                        console.log(`Nova informação da disciplina ${selectedDiscipline.getName()}: Carga Horária - ${selectedDiscipline.getWorkload()}, Nota - ${selectedDiscipline.getGrade()}`);
                     } else {
                         throw new Error('\nOpção inválida de disciplina.\n');
                     }
@@ -422,6 +441,7 @@ export class Course implements CoursesMethodsProps {
             console.log(error.message);
         }
     }
+    
 
     private static isOnlyLetters(input: string): boolean {
         return /^[a-zA-Z\s]+$/.test(input);
