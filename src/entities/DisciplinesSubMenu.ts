@@ -22,10 +22,10 @@ export class DisciplinesSubMenu {
           DisciplinesSubMenu.courseInstance.addDisciplineToCourseManually();
           break;
         case '2':
-          DisciplinesSubMenu.courseInstance.listDisciplines();
+          DisciplinesSubMenu.courseInstance.consultDisciplines();
           break;
         case '3':
-          //Discipline.removeDiscipline();
+          DisciplinesSubMenu.courseInstance.removeDisciplineByIndex();
           break;
         case '4':
           console.log('update discipline');
