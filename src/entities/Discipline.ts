@@ -22,4 +22,9 @@ export class Discipline implements disciplineMethodsProps{
   getGrade(){
     return this.grade;
   }
+
+  setName(newName: string): string{
+    return this.disciplineName = newName;
+  }
+
 }

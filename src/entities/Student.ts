@@ -150,4 +150,7 @@ export class Student implements StudentsMethodsProps {
   private isOnlyLetters(input: string): boolean {
     return /^[a-zA-Z\s]+$/.test(input);
   }
+
 }
+
+

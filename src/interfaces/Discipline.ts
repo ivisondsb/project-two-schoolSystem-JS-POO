@@ -8,4 +8,5 @@ export interface disciplineMethodsProps{
     getName(): string;
     getWorkload(): number;
     getGrade(): number;
+    setName(newName: string): string;
 }
