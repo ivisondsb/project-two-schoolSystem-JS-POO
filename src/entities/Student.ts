@@ -85,59 +85,68 @@ export class Student {
     console.log("Aluno cadastrado com sucesso!");
   }
 
-  public static removeStudent(): void {
-    if (this.students.length === 0) {
-      throw new Error("Não existem estudantes cadastrados");
-    }
-    const studentId = Number(prompt("Informe o id do aluno: "));
-    for (let i = 0; i < this.students.length; i++) {
-      if (this.students[i].id === studentId) {
-        this.students.splice(i, 1);
-        console.log("Aluno removido com sucesso.");
-      } else {
-        throw new Error(`Aluno não encontrado.`);
+  public static removeStudent() {
+    try {
+      if (this.students.length === 0) {
+        throw new Error("Não existem estudantes cadastrados");
       }
+      const studentId = Number(prompt("Informe o id do aluno: "));
+      for (let i = 0; i < this.students.length; i++) {
+        if (this.students[i].id === studentId) {
+          this.students.splice(i, 1);
+          return "Aluno removido com sucesso.";
+        }
+      }
+      return "Aluno não encontrado.";
+    } catch (error: any) {
+      console.log(error.message);
     }
   }
 
-  public static checkStudent(): void {
-    if (this.students.length === 0) {
-      throw new Error("Não existem estudantes cadastrados");
-    }
-    const studentId = Number(prompt("Informe o id do aluno: "));
-    for (let i = 0; i < this.students.length; i++) {
-      if (this.students[i].id === studentId) {
-        console.log(this.students[studentId].showData());
-      } else {
-        throw new Error(`Aluno não encontrado.`);
+  public static checkStudent() {
+    try {
+      if (this.students.length === 0) {
+        throw new Error("Não existem estudantes cadastrados");
       }
+      const studentId = Number(prompt("Informe o id do aluno: "));
+      for (let i = 0; i < this.students.length; i++) {
+        if (this.students[i].id === studentId) {
+          return this.students[studentId].showData();
+        }
+      }
+      return "Aluno não encontrado";
+    } catch (error: any) {
+      console.log(error.message);
     }
   }
 
   public static updateStudent() {
-    if (this.students.length === 0) {
-      throw new Error("Não existem estudantes cadastrados");
-    }
-    const studentId = Number(prompt("Informe o id do aluno: "));
-    for (let i = 0; i < this.students.length; i++) {
-      if (this.students[i].id === studentId) {
-        const student = this.students[i];
-        const newName = prompt("Insira o nome do aluno: ") || student.name;
-        const newAge = Number(
-          prompt("Insira a idade do aluno: ") || student.age
-        );
-        const newCourse = String(
-          prompt("Insira o curso do aluno: ") || student.course.name
-        );
-
-        this.students[i].name = newName;
-        this.students[i].age = newAge;
-        this.students[i].course.name = newCourse;
-
-        console.log("As informações do aluno foram atualizadas.");
-      } else {
-        throw new Error(`Aluno não encontrado.`);
+    try {
+      if (this.students.length === 0) {
+        throw new Error("Não existem estudantes cadastrados");
       }
+      const studentId = Number(prompt("Informe o id do aluno: "));
+      for (let i = 0; i < this.students.length; i++) {
+        if (this.students[i].id === studentId) {
+          const student = this.students[i];
+          const newName = prompt("Insira o nome do aluno: ") || student.name;
+          const newAge = Number(
+            prompt("Insira a idade do aluno: ") || student.age
+          );
+          const newCourse = String(
+            prompt("Insira o curso do aluno: ") || student.course.name
+          );
+
+          this.students[i].name = newName;
+          this.students[i].age = newAge;
+          this.students[i].course.name = newCourse;
+
+          return "As informações do aluno foram atualizadas.";
+        }
+      }
+      return "Aluno não encontrado.";
+    } catch (error: any) {
+      console.log(error.message);
     }
   }
 }
