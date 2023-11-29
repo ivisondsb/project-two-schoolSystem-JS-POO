@@ -27,4 +27,11 @@ export class Discipline implements disciplineMethodsProps{
     return this.disciplineName = newName;
   }
 
+  setWorkload(newWorkload: number): number{
+    return this.workload = newWorkload
+  }
+
+  setGrade(newGrade: number): number{
+    return this.grade = newGrade
+  }
 }
