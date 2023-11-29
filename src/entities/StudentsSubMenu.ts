@@ -25,7 +25,7 @@ export class StudentsSubMenu {
         case '1':
           break;
         case '2':
-          Student.listStudents();
+          // Student.listStudents();
           break;
         case '3':
           // Student.removeStudent();
