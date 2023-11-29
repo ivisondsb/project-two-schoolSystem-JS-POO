@@ -162,39 +162,46 @@ export class Course implements CoursesMethodsProps {
     }
 
     public consultDisciplines(): void {
-        console.log('\n=== Consultar Disciplinas ===');
-
-        this.listCourses();
-
-        if (Course.courses.length === 0) {
-            console.log('Nenhum curso disponível.');
-            return;
-        }
-
+        try {
+            console.log('\n=== Consultar Disciplinas ===');
         
-        const courseOption = prompt('Escolha o número do curso para visualizar disciplinas (ou pressione Enter para voltar): ');
-
-        if (!courseOption || courseOption.trim() === '') {
-            return;
-        }
-
-        const courseNumber = Number(courseOption);
-
-        if (courseNumber > 0 && courseNumber <= Course.courses.length) {
-            const selectedCourse = Course.courses[courseNumber - 1];
-
-            console.log(`\nDisciplinas do curso ${selectedCourse.name}:`);
-
-            if (selectedCourse.disciplines.length === 0) {
-                console.log('Nenhuma disciplina cadastrada para este curso.');
-            } else {
-                for (let index = 0; index < selectedCourse.disciplines.length; index++) {
-                    const discipline = selectedCourse.disciplines[index];
-                    console.log(`${index + 1}. ${discipline.getName()}, Carga Horária: ${discipline.getWorkload()}, Nota: ${discipline.getGrade()}`);
+            this.listCourses();
+        
+            if (Course.courses.length === 0) {
+                console.log('Nenhum curso disponível.');
+                return;
+            }
+        
+            const courseOption = prompt('Escolha o número do curso para visualizar disciplinas (ou pressione Enter para voltar): ');
+        
+            if (!courseOption || isNaN(Number(courseOption))) {
+                throw new Error ("\nOpção inválida!\n")
+            } else{
+                if(courseOption.trim() === ''){
+                    return;
                 }
             }
-        } else {
-            console.log('Opção inválida de curso.');
+        
+            const courseNumber = Number(courseOption);
+        
+            if (courseNumber > 0 && courseNumber <= Course.courses.length) {
+                const selectedCourse = Course.courses[courseNumber - 1];
+        
+                console.log(`\nDisciplinas do curso ${selectedCourse.name}:`);
+        
+                if (selectedCourse.disciplines.length === 0) {
+                    console.log('Nenhuma disciplina cadastrada para este curso.');
+                } else {
+                    for (let index = 0; index < selectedCourse.disciplines.length; index++) {
+                        const discipline = selectedCourse.disciplines[index];
+                        console.log(`${index + 1}. ${discipline.getName()}, Carga Horária: ${discipline.getWorkload()}, Nota: ${discipline.getGrade()}`);
+                    }
+                }
+            } else {
+                throw new Error('Opção inválida de curso.');
+            }
+        } catch (error: any) {
+            console.log(error.message)
         }
     }
 
@@ -211,7 +218,7 @@ export class Course implements CoursesMethodsProps {
             const courseOption = prompt('Escolha o número do curso para remover disciplina (ou pressione Enter para voltar): ');
 
             if (!courseOption || isNaN(Number(courseOption))) {
-                throw new Error('Opção inválida!');
+                throw new Error('\nOpção inválida!\n');
             } else {
                 if(courseOption.trim() === ''){
                     return;
@@ -234,7 +241,7 @@ export class Course implements CoursesMethodsProps {
                     const disciplineIndexOption = prompt('Escolha o número da disciplina para remover (ou pressione Enter para voltar): ');
                     
                     if (!disciplineIndexOption || isNaN(Number(courseOption))) {
-                        throw new Error('Opção inválida!');
+                        throw new Error('\nOpção inválida!\n');
                     } else {
                         if(disciplineIndexOption.trim() === ''){
                             return;
@@ -247,7 +254,7 @@ export class Course implements CoursesMethodsProps {
                         selectedCourse.disciplines.splice(disciplineIndex - 1, 1);
                         console.log('A disciplina foi removida.');
                     } else {
-                        throw new Error('Opção inválida de disciplina.')
+                        throw new Error('\nOpção inválida de disciplina.\n')
                     }
                     if (selectedCourse.disciplines.length === 0) {
                         console.log('Nenhuma disciplina cadastrada para este curso.');
