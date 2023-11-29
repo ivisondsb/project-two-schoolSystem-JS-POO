@@ -25,7 +25,7 @@ export class DisciplinesSubMenu {
           DisciplinesSubMenu.courseInstance.listDisciplines();
           break;
         case '3':
-          // Discipline.removeDiscipline();
+          DisciplinesSubMenu.courseInstance.removeDisciplineByIndex();
           break;
         case '4':
           console.log('update discipline');
