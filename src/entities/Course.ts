@@ -11,8 +11,8 @@ export class Course implements CoursesMethodsProps{
     public courses: CourseProps['courses'] = [];
 
     constructor(name: string, shift: string) {
-        this.name = name;
         this.shift = shift;
+        this.name = name;
         this.disciplines = [];
         this.students = [];
     }
@@ -69,7 +69,6 @@ export class Course implements CoursesMethodsProps{
         
         if (this.courses.length === 0) {
           console.log('Nenhum curso cadastrado.');
-        } else {
             this.courses.forEach((course, index) => {
             console.log(`${index + 1}. Nome: ${course.name}, Turno: ${course.shift}`);
             });
@@ -94,6 +93,6 @@ export class Course implements CoursesMethodsProps{
               console.log('Curso não encontrado.');
             }
           }
-        }
     }
+}
 }
