@@ -1,4 +1,6 @@
-export class Discipline {
+// import { disciplineProps } from "../interfaces/Discipline"
+
+export class Discipline /*implements disciplineProps*/ {
     private _disciplineName: string;
     private _workload: number;
     private _grade: number;
