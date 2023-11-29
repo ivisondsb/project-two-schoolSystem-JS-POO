@@ -100,15 +100,31 @@ export class Course implements CoursesMethodsProps {
     }
 
     public addDisciplineToCourse(course: Course): void {
-        console.log(`\n=== Adicionar Disciplina a Curso ${course.name} ===`);
-        const disciplineName = prompt('Nome da disciplina: ');
-        const workload = Number(prompt('Carga horária da disciplina: '));
-        const grade = Number(prompt('Nota da disciplina: '));
+        try {
+            console.log(`\n=== Adicionar Disciplina a Curso ${course.name} ===`);
+            const disciplineName = prompt('Nome da disciplina: ');
+            if(!disciplineName.trim()){
+                throw new Error('Nome de disciplina inválido.');
+            }
+            const workload = Number(prompt('Carga horária da disciplina: '));
+            
+            if(isNaN(workload)){
+                throw new Error('Nome de disciplina inválido.');
+            }
+            const grade = Number(prompt('Nota da disciplina: '));
 
-        const discipline = new Discipline(disciplineName, workload, grade);
-        course.disciplines.push(discipline);
+            if(isNaN(grade) || grade < 0 || grade > 10){
+                throw new Error('Nota inválida.');
+            }
 
-        console.log(`Disciplina ${disciplineName} adicionada ao curso ${course.name}.`);
+            const discipline = new Discipline(disciplineName, workload, grade);
+            course.disciplines.push(discipline);
+    
+            console.log(`Disciplina ${disciplineName} adicionada ao curso ${course.name}.`);
+            
+        } catch (error: any) {
+            console.log(error.message)      
+        }
     }
 
     public addDisciplineToCourseManually(): void {
@@ -149,7 +165,7 @@ export class Course implements CoursesMethodsProps {
                     }
                     const grade = Number(prompt('Nota da disciplina: '));
 
-                    if (isNaN(grade)) {
+                    if (isNaN(grade) || grade < 0 || grade > 10) {
                         throw new Error('Nota inválida.');
                     }
     
