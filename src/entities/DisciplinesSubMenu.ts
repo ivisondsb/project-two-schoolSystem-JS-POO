@@ -8,6 +8,7 @@ const prompt = promptSync()
 
 export class DisciplinesSubMenu {
   static disciplines: Discipline[] = [];
+  private static courseInstance: Course = new Course('', '');
 
   static start(): void {
     while (true) {
@@ -22,13 +23,13 @@ export class DisciplinesSubMenu {
 
       switch (option) {
         case '1':
-          console.log('add discipline');
+          DisciplinesSubMenu.courseInstance.addDisciplineToCourseManually();
           break;
         case '2':
-          Discipline.listDisciplines();
+          // Discipline.listDisciplines();
           break;
         case '3':
-          Discipline.removeDiscipline();
+          // Discipline.removeDiscipline();
           break;
         case '4':
           console.log('update discipline');
