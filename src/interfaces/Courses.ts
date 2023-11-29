@@ -13,4 +13,8 @@ export interface CoursesMethodsProps {
     removeCourse(name: string): void;
     listCourses(): void;
     updateCourse(name: string): void;
+    removeDisciplineByIndex(): void;
+    consultDisciplines(): void;
+    addDisciplineToCourseManually(): void;
+    addDisciplineToCourse(course: Course): void;
 }

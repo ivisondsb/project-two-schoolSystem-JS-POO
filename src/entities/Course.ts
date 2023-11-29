@@ -8,7 +8,7 @@ const prompt = promptSync();
 export class Course implements CoursesMethodsProps {
     public name: CourseProps['name'];
     public shift: CourseProps['shift'];
-    public disciplines: Discipline[] = [];
+    public disciplines: CourseProps['disciplines'] = [];
     public static courses: Course[] = [];
 
     constructor(name: string, shift: string) {
@@ -45,11 +45,14 @@ export class Course implements CoursesMethodsProps {
         } else {
             for (let index = 0; index < Course.courses.length; index++) {
                 const course = Course.courses[index];
-                console.log(`${index + 1}. Nome: ${course.name}, Turno: ${course.shift}`);
+                let courseInfo = `${index + 1}. Nome: ${course.name}, Turno: ${course.shift}`
+                const disciplineNames = course.disciplines.map(discipline => discipline.getName());
+                courseInfo += `, Disciplinas: ${disciplineNames.join(', ')};`
+                console.log(courseInfo)
             }
-        }
-    }
 
+        }
+  }
     public removeCourse(name: string): void {
         const index = Course.courses.findIndex((course) => course.name === name);
 
@@ -63,39 +66,76 @@ export class Course implements CoursesMethodsProps {
 
     public updateCourse(): void {
         console.log('\n=== Atualizar Curso ===');
+        try {
+            if (Course.courses.length === 0) {
+                console.log('Nenhum curso cadastrado.');
+            } else {
+                Course.courses.forEach((course, index) => {
+                    const disciplineNames = course.disciplines.map(discipline => discipline.getName());
+                    const disciplineArray = `${disciplineNames.join(', ')};`
+                    console.log(`${index + 1}. Nome: ${course.name}, Turno: ${course.shift}, Disciplina(s): ${disciplineArray}`);
+                });
+    
+                const option = prompt('Escolha o número do curso para atualizar (ou pressione Enter para voltar): ');
+                if (isNaN(Number(option))) {
+                    throw new Error('opção inválida. Por favor, insira apenas números.')
+                }
 
-        if (Course.courses.length === 0) {
-            console.log('Nenhum curso cadastrado.');
-        } else {
-            Course.courses.forEach((course, index) => {
-                console.log(`${index + 1}. Nome: ${course.name}, Turno: ${course.shift}`);
-            });
+                if (option && option.trim() !== '') {
+                    const numberOption = Number(option);
+    
+                    if (numberOption <= Course.courses.length) {
+                        const selectedCourse = Course.courses[numberOption - 1];
+    
+                        console.log(`Atualizando curso ${selectedCourse.name}:`);
+    
+                        const newName = prompt(`Novo nome (${selectedCourse.name}): `) ||selectedCourse.name;
+                        
+                        if(!Course.isOnlyLetters(newName)) {
+                            throw new Error('Nome inválido. Por favor, insira apenas letras.')
+                        }
 
-            const option = prompt('Escolha o número do curso para atualizar (ou pressione Enter para voltar): ');
+                        const newShift = prompt(`Novo turno (${selectedCourse.shift}): `) || selectedCourse.shift;
 
-            if (option && option.trim() !== '') {
-                const numberOption = Number(option);
+                        if(!Course.isOnlyLetters(newShift)) {
+                            throw new Error('Turno inválido. Por favor, insira apenas letras.')
+                        }
 
-                if (numberOption <= Course.courses.length) {
-                    const selectedCourse = Course.courses[numberOption - 1];
+                        const course = Course.courses[numberOption - 1]
+                        for (let index = 0; index < course.disciplines.length; index++) {
+                          console.log(`${index + 1}. Disciplina: ${course.disciplines[index].getName()}`);                
+                        }
+                        const DisciplineInput = prompt(`Escolha o número da disciplina para atualizar: '`);
+                        if (!isNaN(Number(DisciplineInput))) {
+                            throw new Error('opção inválida. Por favor, insira apenas números.')
+                        }
+                        
+                        const disciplineIndex = Number(DisciplineInput);
+                        const newDiscipline = prompt(`Novo nome da disciplina: `);
 
-                    console.log(`Atualizando curso ${selectedCourse.name}:`);
+                        if(!Course.isOnlyLetters(newDiscipline)) {
+                            throw new Error('Turno inválido. Por favor, insira apenas letras.')
+                        }
+                        
+                        const selectedDiscipline = course.disciplines[disciplineIndex - 1];
+                        console.log(selectedDiscipline.setName(newDiscipline));
+                        selectedCourse.name = newName;
+                        selectedCourse.shift = newShift;
+    
+                        console.log('O curso foi atualizado.');
+    
+                        const addDiscipline = prompt('Deseja adicionar uma disciplina ao curso? (S para Sim, qualquer tecla para Não): ');
+                        if (addDiscipline.toUpperCase() === 'S') {
+                            this.addDisciplineToCourse(selectedCourse);
+                        }
 
-                    const newName = prompt(`Novo nome (${selectedCourse.name}): `) || selectedCourse.name;
-                    const newShift = prompt(`Novo turno (${selectedCourse.shift}): `) || selectedCourse.shift;
-
-                    selectedCourse.name = newName;
-                    selectedCourse.shift = newShift;
-                    console.log('O curso foi atualizado.');
-
-                    const addDiscipline = prompt('Deseja adicionar uma disciplina ao curso? (S para Sim, qualquer tecla para Não): ');
-                    if (addDiscipline.toUpperCase() === 'S') {
-                        this.addDisciplineToCourse(selectedCourse);
+                    } else {
+                        console.log('Curso não encontrado.');
                     }
-                } else {
-                    console.log('Curso não encontrado.');
                 }
             }
+        } catch (error: any) {
+            console.log(error.message)
         }
     }
 
@@ -307,5 +347,8 @@ export class Course implements CoursesMethodsProps {
         catch (error: any) {
             console.log(error.message)
         }
+    }
+    private static isOnlyLetters(input: string): boolean {
+        return /^[a-zA-Z\s]+$/.test(input);
     }
 }

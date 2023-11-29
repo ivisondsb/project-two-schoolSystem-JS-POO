@@ -1,24 +1,24 @@
 import { Student } from '../entities/Student';
-import { Discipline } from '../entities/Discipline';
+import { Course } from '../entities/Course';
 
 export interface StudentProps {
      name: string;
-     shift: string;
-     disciplines: Discipline[];
+     age: number;
+     course: Course;
+     id: number;
      students: Student[];
-     enrollment: number;
 }
 
 export interface StudentsMethodsProps {
-    addDiscipline(discipline: Discipline): void;
-    removeDiscipline(disciplineName: string): void;
-    listDisciplines(): void;
-    addStudent(student: Student): void;
-    removeStudent(studentId: string): void;
-    listStudents(): void;
+    registerStudent(student: string, age: number): void;
+    removeStudent(): void;
+    checkStudent(): void;
+    updateStudent(): void;
     getName(): string;
-    getShift(): string;
-    getEnrollment(): number;
+    getAge(): number;
+    getId(): number;
+    getCourse(): Course;
+    showData(): void;
 }
 
 

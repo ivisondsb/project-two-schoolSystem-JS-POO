@@ -2,9 +2,10 @@ import * as promptSync from 'prompt-sync'
 import { Course } from './Course';
 
 const prompt = promptSync()
-
 export class CoursesSubMenu {
+
   private static courseInstance: Course = new Course('', '');
+
   public static start(): void {
     while (true) {
       console.log('\n=== Gerenciar Cursos ===');
@@ -37,5 +38,4 @@ export class CoursesSubMenu {
     }
   }
 }
-
   
