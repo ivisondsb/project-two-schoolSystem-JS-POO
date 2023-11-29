@@ -11,6 +11,7 @@ export class Course implements CoursesMethodsProps{
     public courses: CourseProps['courses'] = [];
 
     constructor(name: string, shift: string) {
+        this.shift = shift;
         this.name = name;
         this.disciplines = [];
         this.students = [];
@@ -93,4 +94,5 @@ export class Course implements CoursesMethodsProps{
             }
           }
     }
+}
 }

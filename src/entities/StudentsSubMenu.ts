@@ -39,5 +39,5 @@ export class StudentsSubMenu {
           console.log('Opção inválida.');
       }
     }
+  }
 }
-

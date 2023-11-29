@@ -2,6 +2,7 @@ import * as promptSync from 'prompt-sync'
 import { Course } from './Course';
 
 const prompt = promptSync()
+export class CoursesSubMenu {
 
   private static courseInstance: Course = new Course('', '');
 
@@ -35,5 +36,5 @@ const prompt = promptSync()
       }
     }
 }
-
+}
   
