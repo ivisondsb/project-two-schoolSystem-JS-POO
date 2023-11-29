@@ -26,7 +26,7 @@ export class DisciplinesSubMenu {
           DisciplinesSubMenu.courseInstance.addDisciplineToCourseManually();
           break;
         case '2':
-          // Discipline.listDisciplines();
+          DisciplinesSubMenu.courseInstance.listDisciplines();
           break;
         case '3':
           // Discipline.removeDiscipline();
