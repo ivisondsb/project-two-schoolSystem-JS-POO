@@ -1,8 +1,8 @@
 export class Discipline {
-    disciplineName: string;
-    workload: number;
-    grade: number;
-  
+    public disciplineName: string;
+    public workload: number;
+    public grade: number;
+
     constructor(disciplineName: string, workload: number) {
       this.disciplineName = disciplineName;
       this.workload = workload;
