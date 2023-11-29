@@ -1,13 +1,9 @@
 import * as promptSync from 'prompt-sync'
-
-import { Discipline } from './Discipline';
 import { Course } from './Course';
-import { CoursesSubMenu } from './CoursesSubMenu';
 
 const prompt = promptSync()
 
 export class DisciplinesSubMenu {
-  static disciplines: Discipline[] = [];
   private static courseInstance: Course = new Course('', '');
 
   static start(): void {
