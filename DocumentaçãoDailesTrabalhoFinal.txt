@@ -1,7 +1,7 @@
 Detalhes das reuniões.
 
 
-1º Reunião - 23/11/2023(Quinta-feira) Discord 22:10hrs
+1º Reunião - 23/11/2023(Quinta-feira) Discord 22:10hrs - 00:00
 
 
 
@@ -27,7 +27,7 @@ Detalhes das reuniões.
 
    Devido a obrigações pessoais de trabalho, ivison não conseguiria fazer o menu, nesse caso, gabriela se prontificou a realizar o menu e upar para o git de ivison.
 
-   Cada membro do grupo pegou as tasks para serem feitas durante o final de semana para serem apresentadas na próxima reunião 
+   Cada membro do grupo pegou as tasks para serem feitas durante o final de semana para serem apresentadas na próxima reunião. Cada um ficou responsável pelo seu tratamento de erro. 
 
    Suamy - Criar Classe Curso, Cadastrar Curso, Remover Disciplina, Consultar Disciplina e Remover Curso;
 
@@ -41,7 +41,7 @@ Detalhes das reuniões.
 
 
 
-3º Reunião - 27/11/2023(Segunda-Feira) Discord 22:10
+3º Reunião - 27/11/2023(Segunda-Feira) Discord 22:10 - 00:00
 
 
 
@@ -54,7 +54,8 @@ Detalhes das reuniões.
    Mexemos no código para melhorar a leitura. Verificamos o tsconfig e deixamos igual ao da última aula.
 
 
-4º Reunião - 28/11/2023 Discord(Terça-Feira) 19:00
+4º Reunião - 28/11/2023 Discord(Terça-Feira) 19:00 - 00:00
+
 
    Checar o que está faltando no código para live. Ivison chega as 21hrs do trabalho.
 
@@ -65,7 +66,18 @@ Detalhes das reuniões.
 				   5.- Remover Aluno, Atualizar Aluno, Consultar Aluno(Ivison);
 
 
+5º Reunião - 29/11/2023 Discod (Quarta-Feira) 10:00 - 22:24 (Sim, mais de 12hrs no projeto direto)
 
 
- 
+   A reunião iria começar às 10hrs, mas como estavamos livres de manhã, começamos às 9:30h.
+   Padronizamos os metodos por index.
 
+Dividimos em tarefas para rodar	1.- terminar da documentação técnica e fluxograma;
+				2.- gabi verificando problemas do código do student;
+				3.- ivison method deletar, atualizar e listar students;
+				4.- Edson fazer o restante de disciplina; 
+				5.- ivison console.clear e /n;
+
+   Chegamos a conclusão de colocar os metodos da disciplina dentro da classe curso, porque ficou mais coeso, visto que a disciplina é referente a um curso.
+   Ao decorrer do desenvolvimento, percebemos a possibilidade de adicionar várias funcionalidades. Faremos updates futuramente.
+   Devido ao tempo que tomamos desenvolvendo e documentando o código, não conseguimos colocar validações em todas as classes, só colocamos em algumas.
