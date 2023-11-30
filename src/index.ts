@@ -1,7 +1,7 @@
-import { Menu } from './entities/Menu';
+import { Menu } from "./entities/Menu";
 
 const main = () => {
-    Menu.init();
-}
+  Menu.init();
+};
 
 main();

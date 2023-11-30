@@ -14,6 +14,7 @@ export class StudentsSubMenu {
   );
 
   public static start(): void {
+    console.clear();
     while (true) {
       console.log("\n=== Gerenciar Alunos ===");
       console.log("1. Cadastrar Aluno");

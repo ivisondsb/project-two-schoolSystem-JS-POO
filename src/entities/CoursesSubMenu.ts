@@ -6,6 +6,7 @@ export class CoursesSubMenu {
   private static courseInstance: Course = new Course("", "", 0);
 
   public static start(): void {
+    console.clear();
     while (true) {
       console.log("\n=== Gerenciar Cursos ===");
       console.log("1. Cadastrar Curso");

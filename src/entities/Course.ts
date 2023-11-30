@@ -47,7 +47,7 @@ export class Course implements CoursesMethodsProps {
     console.log("\n=== Consultar Cursos ===");
 
     if (Course.courses.length === 0) {
-      console.log("Nenhum curso cadastrado.");
+      return console.log("Nenhum curso cadastrado.");
     } else {
       for (let index = 0; index < Course.courses.length; index++) {
         const course = Course.courses[index];

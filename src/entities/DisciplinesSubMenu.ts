@@ -7,6 +7,7 @@ export class DisciplinesSubMenu {
   private static courseInstance: Course = new Course("", "", 0);
 
   static start(): void {
+    console.clear();
     while (true) {
       console.log("\n=== Gerenciar Disciplinas ===");
       console.log("1. Cadastrar Disciplina");

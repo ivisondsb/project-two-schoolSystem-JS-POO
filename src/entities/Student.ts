@@ -73,7 +73,8 @@ export class Student implements StudentsMethodsProps {
   public removeStudent() {
     try {
       if (this.students.length === 0) {
-        console.log("Não existem estudantes cadastrados");
+        console.clear();
+        return console.log("Não existem estudantes cadastrados");
       }
       console.log("\n----------LISTA DE ALUNOS----------\n");
       for (let i = 0; i < this.students.length; i++) {
@@ -95,7 +96,7 @@ export class Student implements StudentsMethodsProps {
   public checkStudent() {
     try {
       if (this.students.length === 0) {
-        console.log("Não existem estudantes cadastrados");
+        return console.log("Não existem estudantes cadastrados");
       }
       console.log("\n----------LISTA DE ALUNOS----------\n");
       for (let i = 0; i < this.students.length; i++) {
@@ -110,7 +111,7 @@ export class Student implements StudentsMethodsProps {
           );
           const disciplineArray = disciplinesName.join(", ");
 
-          console.log(
+          return console.log(
             `Nome: ${student.name}\nIdade: ${student.age}\nCurso: ${student.course.name}\nTurno: ${student.course.shift}\nDisciplinas: ${disciplineArray}`
           );
         }
@@ -124,7 +125,7 @@ export class Student implements StudentsMethodsProps {
   public updateStudent() {
     try {
       if (this.students.length === 0) {
-        console.log("Não existem estudantes cadastrados");
+        return console.log("Não existem estudantes cadastrados");
       }
       console.log("\n----------LISTA DE ALUNOS----------\n");
       for (let i = 0; i < this.students.length; i++) {
@@ -147,7 +148,7 @@ export class Student implements StudentsMethodsProps {
           this.students[i].age = newAge;
           this.students[i].course.shift = newShift;
 
-          console.log("As informações do aluno foram atualizadas.");
+          return console.log("As informações do aluno foram atualizadas.");
         }
       }
       return console.log("Aluno não encontrado.");
