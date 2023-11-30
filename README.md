@@ -18,6 +18,7 @@
    O código está presente no git de ivison: https://github.com/ivisondsb/project-two-schoolSystem-JS-POO.
 
    Precisa ser feito a clonagem do repositório: Abra o terminal e navegue até o diretório desejado para o código. 
+   
    `git clone https://github.com/seu-usuario/nome-do-repositorio.git`
 
 
@@ -35,33 +36,45 @@
 
 
 Instale as dependências: No diretório do projeto, execute o seguinte comando para instalar as dependências listadas no arquivo package.json.
+   
    `cd nome-do-repositorio`
+   
    `npm install`
 
 Executar o software: Após a instalação das dependências, você pode iniciar o software. 
+   
    `npm start`
 
 Começar NodeJS Projet (Pay attention at the root directory)
+    
     ```npm init -y```
 
 Instalar Typescript
+    
     `npm i -g typescript`
 
 Instalação do prompt-sync:
 
 ```npm install prompt-sync``` no terminal do diretório do seu projeto.
+  
    ou
+   
 ```npm i``` no terminal do diretório do seu projeto, visto que o package.json já consta o prompt.
 
 Inicializar Typescript
+   
    ```tsc --init```
 
 Rodar projeto 
+    
     ```node dist/index.js```
 
 Rodar arquivos TS
+    
     ```https://www.npmjs.com/package/ts-node```
+    
     ```npm i -g ts-node```
+    
     ```ts-node <filename>```
 
 
@@ -382,22 +395,22 @@ Nós usamos SemVer para controle de versão. Para as versões disponíveis, obse
 ## ✒️ Autores
 
 
-   Suamy Vasconcelos- Desenvolvedor full stack Node.JS/TypeScript - Java - Angularjunior;
-   Luis Otávio - Desenvolvedor Back-End junior Node.JS-Functional/TypeScript;
-   Edson Suraty - Desenvolvedor Back-End junior Node.JS/TypeScript;
-   Ivison Silva- Desenvolvedor Back-End Junior Node.JS/TypeScript;
-   Gabriela - Desenvolvedora full stack junior Node.JS/TypeScript - Java - Junior; 
-
+   Suamy Vasconcelos - Desenvolvedor full stack Node.JS/TypeScript - Java - Angularjunior;
    
-## 📄 Licença
-
-
-Este projeto está sob a licença (sua licença) - veja o arquivo LICENSE.md para detalhes.
+   Luis Otávio - Desenvolvedor Back-End junior Node.JS-Functional/TypeScript;
+   
+   Edson Suraty - Desenvolvedor Back-End junior Node.JS/TypeScript;
+   
+   Ivison Silva - Desenvolvedor Back-End Junior Node.JS/TypeScript;
+   
+   Gabriela Moura - Desenvolvedora full stack junior Node.JS/TypeScript - Java - Junior; 
 
 
 ## 🎁 Expressões de gratidão
 
 
 Conte a outras pessoas sobre este projeto 📢;
+
 Convide alguém da equipe para uma cerveja 🍺;
+
 Um agradecimento publicamente em especial ao Professor do módulo Esdras Aguilar e a toda nossa sala 1091!;
