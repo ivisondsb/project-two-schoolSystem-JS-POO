@@ -4,6 +4,7 @@
 
 	Foram criadas as classes Student, Course, e Discipline que representam entidades centrais, com métodos para manipular informações sobre alunos, cursos e disciplinas.
 	Das classes foram criadas suas subClasses que representam o menu StudentSubMenu, DisciplineSubMenu, CourseSubMenu.
+   
    Interfaces também foram criadas com uma pasta separada com o nome "interfaces", e seu arquivo de interface Students com as interfaces StudentsMethodsProps e StudentProps.
 
 	Definindo a estrutura e as operações possíveis para os alunos, disciplinas e cursos garantindo consistência entre diferentes partes do sistema. A interação com o usuário é feita por meio de um menu interativo que oferece opções para realizar diversas ações, proporcionando um controle detalhado sobre o gerenciamento de estudantes e cursos.
@@ -16,8 +17,8 @@
 
    O código está presente no git de ivison: https://github.com/ivisondsb/project-two-schoolSystem-JS-POO.
 
-   Precisa ser feito a clonagem do repositório: Abra o terminal e navegue até o diretório desejado para o código. git clone 
-'https://github.com/seu-usuario/nome-do-repositorio.git'
+   Precisa ser feito a clonagem do repositório: Abra o terminal e navegue até o diretório desejado para o código. 
+   `git clone https://github.com/seu-usuario/nome-do-repositorio.git`
 
 
 
@@ -28,7 +29,7 @@
 
    Node.js / typescript - IDE que rode ambos. Utilizada no projeto Visual Studio Code.
 
-   prompt-sync
+   `prompt-sync`
 
 ## 🔧 Instalação
 
@@ -38,7 +39,7 @@ Instale as dependências: No diretório do projeto, execute o seguinte comando p
    `npm install`
 
 Executar o software: Após a instalação das dependências, você pode iniciar o software. 
-   'npm start'
+   `npm start`
 
 Começar NodeJS Projet (Pay attention at the root directory)
     ```npm init -y```
